@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.iostwin.iostdex",
+    "sha256_cert_fingerprints":
+    ["17:7D:AB:B8:48:BA:E3:0A:64:1C:32:E6:92:3F:32:53:A6:FE:8A:35:C6:B5:17:03:23:E8:E4:49:1D:04:76:A5"]
+  }
+}]
