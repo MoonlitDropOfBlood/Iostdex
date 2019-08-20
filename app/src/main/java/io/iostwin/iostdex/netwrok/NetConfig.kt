@@ -1,6 +1,8 @@
-package com.iostwin.iostdex.netwrok
+package io.iostwin.iostdex.netwrok
 
+import io.iostwin.iostdex.BuildConfig
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -13,11 +15,19 @@ object NetConfig {
         .readTimeout(60, TimeUnit.SECONDS)//设置读取超时时间
         .writeTimeout(60, TimeUnit.SECONDS)//设置写的超时时间
         .connectTimeout(60, TimeUnit.SECONDS)//设置连接超时时间
+        .addInterceptor(HttpLoggingInterceptor().run {
+            this.level = HttpLoggingInterceptor.Level.BODY
+            this
+        })
         .build()
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.iostdex.io")
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BuildConfig.BASE_URL)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    fun <T> getService(clazz: Class<T>): T {
+        return retrofit.create(clazz)
+    }
 }

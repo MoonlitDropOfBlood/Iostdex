@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="control" type="io.iostwin.iostdex.module.main.control.HomeControl"/>
+    </data>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="io.iostwin.iostdex.module.main.ui.fragments.HomeFragment">
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:title="@string/title_home"
+                app:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                app:srlHeaderHeight="50dp"
+                android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.header.DeliveryHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <!--suppress AndroidUnknownAttribute -->
+            <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adapter="@{control.adapter}"
+                    android:background="@android:color/white"
+                    android:divider="#0D000000"
+                    android:dividerHeight="1dp"
+                    android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"/>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </LinearLayout>
+</layout>

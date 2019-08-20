@@ -1,4 +1,4 @@
-package com.iostwin.iostdex.common
+package io.iostwin.iostdex.common
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

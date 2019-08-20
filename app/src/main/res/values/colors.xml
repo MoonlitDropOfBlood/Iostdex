@@ -3,4 +3,19 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#38479B</color>
     <color name="colorAccent">#00BCD4</color>
+
+    <color name="background_color">#EEEEEE</color>
+    <color name="login_text_color">#B7BBBF</color>
+
+    <color name="text_color_level_0">#050505</color>
+    <color name="text_color_level_1">#1D1D26</color>
+    <color name="text_color_level_2">#4A4A4A</color>
+    <color name="text_color_level_3">#999999</color>
+    <color name="text_color_level_4">#737171</color>
+    <color name="text_color_level_5">#666666</color>
+    <color name="text_color_level_6">#B2B2B3</color>
+    <color name="line_color">#DDDDDD</color>
+
+    <color name="down">#F31818</color>
+    <color name="up">#4CAF50</color>
 </resources>

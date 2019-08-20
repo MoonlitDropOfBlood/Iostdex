@@ -3,4 +3,5 @@
     <string name="title_home">首页</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="app_network_socket_timeout">网络连接超时!</string>
 </resources>

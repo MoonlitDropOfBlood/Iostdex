@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_home">메인</string>
+	<string name="title_home">메인</string>
+	<string name="app_network_socket_timeout">네트워크 시간 시간</string>
 </resources>

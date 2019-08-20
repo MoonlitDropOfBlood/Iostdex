@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_home">首頁</string>
+    <string name="app_network_socket_timeout">網絡連接超時！</string>
 </resources>
