@@ -19,6 +19,7 @@ object NetConfig {
             this.level = HttpLoggingInterceptor.Level.BODY
             this
         })
+        .addInterceptor(IOSTInterceptor())
         .build()
 
     private val retrofit = Retrofit.Builder()

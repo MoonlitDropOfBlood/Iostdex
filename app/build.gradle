@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'BASE_URL', '"https://api.iostwin.io"'
         buildConfigField 'String', 'RES_URL', '"https://www.iostdex.io"'
-        buildConfigField 'String', 'IOST_NET', '"https://api.iost.io"'
+        buildConfigField 'String', 'IOST_NET', '"api.iost.io"'
     }
     buildTypes {
         release {

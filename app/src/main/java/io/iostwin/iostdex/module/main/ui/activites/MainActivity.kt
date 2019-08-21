@@ -10,6 +10,7 @@ import io.iostwin.iostdex.module.main.ui.fragments.HomeFragment
 import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.domain.LoginMessage
 import io.iostwin.iostdex.domain.User
+import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
 import io.iostwin.iostdex.module.main.ui.fragments.LoginFragment
 import io.iostwin.iostdex.module.main.ui.fragments.OrderFragment
 import org.greenrobot.eventbus.EventBus
@@ -18,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe
 @RouterUri(path = ["/"])
 class MainActivity : AppCompatActivity() {
     private val loginFragment = LoginFragment()
-    private val tabFragment = arrayListOf(HomeFragment(), OrderFragment())
+    private val tabFragment = arrayListOf(HomeFragment(), OrderFragment(), AssetsFragment())
     private var mCurrentFragment: BaseFragment = tabFragment[0]
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +43,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.navigation_notifications -> {
+                R.id.navigation_assets -> {
                     if (!User.isLogin()) {
                         changeFragment(loginFragment)
                     } else {
-
+                        changeFragment(tabFragment[2])
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -72,8 +73,8 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_order -> {
                 changeFragment(tabFragment[1])
             }
-            R.id.navigation_notifications -> {
-
+            R.id.navigation_assets -> {
+                changeFragment(tabFragment[2])
             }
         }
     }

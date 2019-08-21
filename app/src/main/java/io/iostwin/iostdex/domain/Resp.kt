@@ -35,3 +35,27 @@ data class RecordOrderResp(
     val tradeHash: String,
     val user: String
 )
+
+data class AccountResp(
+    val balance: BigDecimal,
+    val frozen_balances: List<FrozenBalance>,
+    val gas_info: GasInfo,
+    val name: String,
+    val ram_info: RamInfo
+)
+
+data class FrozenBalance(
+    val amount: BigDecimal,
+    val time: Long
+)
+
+data class GasInfo(
+    val current_total: BigDecimal,
+    val limit: BigDecimal
+)
+
+data class RamInfo(
+    val available: String,
+    val total: String,
+    val used: String
+)

@@ -21,8 +21,8 @@
         android:paddingBottom="16dp">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
             android:src="@{viewModel.icon}" />
@@ -47,8 +47,8 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:textSize="14sp"
             android:gravity="center"
             android:background="@{viewModel.compareTo() == 0 ? @drawable/bg_home_percent_def : viewModel.compareTo() == 1 ? @drawable/bg_home_percent_up:@drawable/bg_home_percent_down}"

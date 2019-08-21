@@ -2,8 +2,11 @@
 <resources>
     <string name="title_home">首頁</string>
     <string name="title_order">訂單</string>
+    <string name="title_assets">資產</string>
     <string name="app_network_socket_timeout">網絡連接超時！</string>
 
     <string name="login_title">錢包登錄</string>
     <string name="login_slogan">首家IOST去中心化交易所</string>
+
+    <string name="assets_total">当前資產總估值</string>
 </resources>

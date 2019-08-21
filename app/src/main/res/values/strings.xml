@@ -2,8 +2,10 @@
     <string name="app_name" translatable="false">IOSTDex</string>
     <string name="title_home">首页</string>
     <string name="title_order">订单</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_assets">资产</string>
     <string name="app_network_socket_timeout">网络连接超时!</string>
     <string name="login_title">钱包登录</string>
     <string name="login_slogan">首家IOST去中心化交易所</string>
+
+    <string name="assets_total">当前资产总估值</string>
 </resources>
