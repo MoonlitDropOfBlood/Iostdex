@@ -1,5 +1,6 @@
 package io.iostwin.iostdex.module.main.control
 
+import android.os.Handler
 import android.widget.AdapterView
 import androidx.databinding.library.baseAdapters.BR
 import io.iostwin.iostdex.R
@@ -16,14 +17,22 @@ class HomeControl(private val binding: FragmentHomeBinding) {
     private val fail = fun(_: Throwable) {
         binding.refreshLayout.finishRefresh(false)//传入false表示刷新失败
     }
+    private val handler = Handler()
 
     init {
         binding.refreshLayout.setOnRefreshListener { sendHttp() }
         binding.refreshLayout.autoRefresh()
+        handler.postDelayed({ autoRefData() }, 5000)
+    }
+
+    private fun autoRefData() {
+        sendHttp()
+        handler.postDelayed({ autoRefData() }, 5000)
     }
 
     private fun sendHttp() {
-        NetConfig.getService(ApiService::class.java).chartAll().enqueue(HttpCallBack(this::success, fail))
+        NetConfig.getService(ApiService::class.java).chartAll()
+            .enqueue(HttpCallBack(this::success, fail))
     }
 
     private fun success(response: ArrayList<TokenSymbolResp>) {

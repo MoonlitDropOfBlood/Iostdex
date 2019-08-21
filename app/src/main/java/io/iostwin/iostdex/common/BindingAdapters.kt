@@ -31,7 +31,12 @@ class BindingAdapters {
          */
         @BindingAdapter(value = ["android:src", "defaultImage", "errorImage"], requireAll = false)
         @JvmStatic
-        fun setImage(imageView: ImageView, src: String?, defaultImage: Drawable?, errorImage: Drawable?) {
+        fun setImage(
+            imageView: ImageView,
+            src: String?,
+            defaultImage: Drawable?,
+            errorImage: Drawable?
+        ) {
             val context = imageView.rootView.context
             var errorImageFun = errorImage
             if (null == errorImageFun) {
@@ -44,14 +49,18 @@ class BindingAdapters {
                     imageView.setImageDrawable(errorImageFun)
                 }
             } else {
-                var myOptions = RequestOptions().error(errorImageFun).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                var myOptions = RequestOptions().error(errorImageFun)
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 if (defaultImage != null) {
                     myOptions = myOptions.placeholder(defaultImage)
                 }
                 if (Utils.isNumeric(src)) {
-                    Glide.with(context).load(ConverterUtil.getInteger(src)).thumbnail(0.1f).apply(myOptions).into(imageView)
+                    Glide.with(context).load(ConverterUtil.getInteger(src)).thumbnail(0.1f)
+                        .apply(myOptions).into(imageView)
                 } else {
-                    Glide.with(context).load(BuildConfig.RES_URL + src).thumbnail(0.1f).apply(myOptions).into(imageView)
+                    Glide.with(context).load(src!!.run {
+                        if (this.startsWith("http")) this else BuildConfig.RES_URL + src
+                    }).thumbnail(0.1f).apply(myOptions).into(imageView)
                 }
             }
         }

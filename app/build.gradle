@@ -10,7 +10,7 @@ apply plugin: 'WMRouter'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "io.iostwin.iostdex"
         minSdkVersion 25
@@ -20,6 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'BASE_URL', '"https://api.iostwin.io"'
         buildConfigField 'String', 'RES_URL', '"https://www.iostdex.io"'
+        buildConfigField 'String', 'IOST_NET', '"https://api.iost.io"'
     }
     buildTypes {
         release {

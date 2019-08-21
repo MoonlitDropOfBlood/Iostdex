@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_home">Home</string>
+    <string name="title_order">Order</string>
     <string name="app_network_socket_timeout">Network timeout</string>
+
+    <string name="login_title">Wallet login</string>
+    <string name="login_slogan">The first IOST DEX</string>
 </resources>

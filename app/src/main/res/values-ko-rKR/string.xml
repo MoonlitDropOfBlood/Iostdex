@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="title_home">메인</string>
+	<string name="title_order">순서</string>
 	<string name="app_network_socket_timeout">네트워크 시간 시간</string>
+
+	<string name="login_title">지갑 로그인</string>
+	<string name="login_slogan">최초의 분산 IOST 교환</string>
 </resources>

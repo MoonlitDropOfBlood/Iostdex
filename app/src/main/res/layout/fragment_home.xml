@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="control" type="io.iostwin.iostdex.module.main.control.HomeControl"/>
+
+        <variable
+                name="control"
+                type="io.iostwin.iostdex.module.main.control.HomeControl" />
     </data>
+
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             tools:context="io.iostwin.iostdex.module.main.ui.fragments.HomeFragment">
+
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:theme="@style/Theme.AppCompat.Light.DarkActionBar"
                 app:title="@string/title_home"
-                app:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+                app:titleTextColor="@android:color/white" />
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
-                app:srlHeaderHeight="50dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:srlHeaderHeight="50dp">
 
             <com.scwang.smartrefresh.header.DeliveryHeader
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             <!--suppress AndroidUnknownAttribute -->
             <ListView
@@ -37,7 +44,7 @@
                     android:dividerHeight="1dp"
                     android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
                     android:overScrollMode="never"
-                    android:scrollbars="none"/>
+                    android:scrollbars="none" />
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
