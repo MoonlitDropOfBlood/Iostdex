@@ -1,4 +1,4 @@
-package com.iostwin.iostdex
+package io.iostwin.iostdex
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
