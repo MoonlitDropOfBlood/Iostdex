@@ -13,6 +13,7 @@
     <string name="order_buy">구입</string>
     <string name="order_sell">판매</string>
     <string name="order_commission_time">커미션 시간</string>
+    <string name="order_status">주</string>
 
     <string name="assets_total">현재 자산 총 평가</string>
     <string name="asset_text">값:</string>
@@ -23,4 +24,18 @@
 
     <string name="tab_my_commission">내 커미션</string>
     <string name="tab_history_order">연혁 주문</string>
+
+    <string-array name="order_status">
+        <item>모든</item>
+        <item>처리되지 않은</item>
+        <item>채워지지 않은</item>
+        <item>부분 거래</item>
+        <item>모든 거래</item>
+        <item>취소</item>
+    </string-array>
+
+    <string name="start_time">시작 시간</string>
+    <string name="end_time">종료 시간</string>
+    <string name="reset">재설정</string>
+    <string name="please_select">선택하십시오</string>
 </resources>

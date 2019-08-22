@@ -1,5 +1,6 @@
 package io.iostwin.iostdex.netwrok
 
+import io.iostwin.iostdex.domain.HistoryOrderResp
 import io.iostwin.iostdex.domain.PageResp
 import io.iostwin.iostdex.domain.RecordOrderResp
 import io.iostwin.iostdex.domain.TokenSymbolResp
@@ -13,9 +14,15 @@ interface ApiService {
     @GET("/api/chart/all/")
     fun chartAll(): Call<ArrayList<TokenSymbolResp>>
 
-    @POST("/api/trade/orders")
+    @POST("/api/trade/orders/")
     fun orders(
-        @Field("symbol") symbol: String, @Field("user") user: String, @Field("direction") direction: Int?,
-        @Field("status") status: Int?, @Field("starttime") startTime: Long?, @Field("endtime") endTime: Long?
-    ): Call<ArrayList<PageResp<RecordOrderResp>>>
+        @Field("page") page: Int, @Field("symbol") symbol: String, @Field("user") user: String,
+        @Field("direction") direction: Int?, @Field("status") status: Int,
+        @Field("starttime") startTime: Int?, @Field("endtime") endTime: Int?
+    ): Call<PageResp<RecordOrderResp>>
+
+    @POST("/api/trade/his/")
+    fun his(
+        @Field("page") page: Int, @Field("symbol") symbol: String, @Field("user") user: String
+    ): Call<PageResp<HistoryOrderResp>>
 }

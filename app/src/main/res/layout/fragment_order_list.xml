@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="control"
+            type="io.iostwin.iostdex.module.main.control.OrderListControl" />
+    </data>
+
+    <!--suppress AndroidUnknownAttribute -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adapter="@{control.adapter}"
+        android:divider="#0D000000"
+        android:dividerHeight="1dp"
+        android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(view,position)}"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+</layout>

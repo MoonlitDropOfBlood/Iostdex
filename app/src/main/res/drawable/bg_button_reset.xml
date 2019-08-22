@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item android:drawable="@color/text_color_level_6" />
+            <item android:drawable="@android:color/white" android:top="1dp" />
+        </layer-list>
+    </item>
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:drawable="@color/text_color_level_6" />
+            <item android:drawable="@color/text_color_level_6" android:top="1dp" />
+            <item android:drawable="@color/shadow"/>
+        </layer-list>
+    </item>
+</selector>

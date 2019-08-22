@@ -7,36 +7,44 @@ import androidx.databinding.DataBindingUtil
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.common.BaseFragment
 import io.iostwin.iostdex.databinding.FragmentOrderBinding
+import io.iostwin.iostdex.domain.LoginMessage
 import io.iostwin.iostdex.domain.TokenSymbolResp
+import io.iostwin.iostdex.domain.User
 import io.iostwin.iostdex.module.main.control.OrderControl
+import io.iostwin.iostdex.module.main.ui.adapters.OrderPagerAdapter
 import io.iostwin.iostdex.netwrok.ApiService
 import io.iostwin.iostdex.netwrok.HttpCallBack
 import io.iostwin.iostdex.netwrok.NetConfig
+import org.greenrobot.eventbus.EventBus
 
 class OrderFragment : BaseFragment() {
-    private val tokenSymbols = arrayListOf<TokenSymbolResp>()
-    private lateinit var binding: FragmentOrderBinding
+    private lateinit var control: OrderControl
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = DataBindingUtil.inflate(
+        val binding = DataBindingUtil.inflate<FragmentOrderBinding>(
             inflater,
             R.layout.fragment_order,
             container,
             false
         )
-        binding.control = OrderControl()
+        binding.viewPager.adapter = OrderPagerAdapter(childFragmentManager)
+        control = OrderControl(binding)
+        binding.control = control
         NetConfig.getService(ApiService::class.java).chartAll().enqueue(HttpCallBack(this::success))
+        EventBus.getDefault().register(control)
         return binding.root
     }
 
     private fun success(response: ArrayList<TokenSymbolResp>) {
-        tokenSymbols.addAll(response)
-        for (item in tokenSymbols) {
-//            binding.tokenSymbol.addTab(binding.tokenSymbol.newTab().setText(item.name))
-        }
-        initData()
+        control.addSymbol(response)
     }
 
     override fun initData() {
-//        tokenSymbols[binding.tokenSymbol.selectedTabPosition]
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(control)
     }
 }

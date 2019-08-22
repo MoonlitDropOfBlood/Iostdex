@@ -16,6 +16,10 @@ data class TokenSymbolResp(
             this.compareTo(BigDecimal.ZERO)
         } ?: 0
     }
+
+    override fun toString(): String {
+        return name
+    }
 }
 
 data class PageResp<T>(val list: ArrayList<T>, val maxPage: Int, val totalRecord: Int)
@@ -32,8 +36,24 @@ data class RecordOrderResp(
     val status: Int,
     val time: Long,
     val totalNum: BigDecimal,
-    val tradeHash: String,
+    val tradeHx: String,
     val user: String
+)
+
+data class HistoryOrderResp(
+    val buy: Int,
+    val fee: BigDecimal,
+    @SerializedName("feesymbol") val feeSymbol: String,
+    val finishAmount: BigDecimal,
+    val finishNum: BigDecimal,
+    val finishTime: Int,
+    val fromUser: String,
+    val id: Int,
+    val orderId: Int,
+    val price: BigDecimal,
+    val symbol: String,
+    val toUser: String,
+    val tradeHx: String
 )
 
 data class TokenBalanceResp(val balance: BigDecimal, val frozen_balances: List<FrozenBalance>)

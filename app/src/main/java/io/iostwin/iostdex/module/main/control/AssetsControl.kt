@@ -3,7 +3,6 @@ package io.iostwin.iostdex.module.main.control
 import android.os.AsyncTask
 import androidx.databinding.ObservableField
 import androidx.databinding.library.baseAdapters.BR
-import androidx.recyclerview.widget.LinearLayoutManager
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.common.BaseViewAdapter
 import io.iostwin.iostdex.databinding.FragmentAssetsBinding

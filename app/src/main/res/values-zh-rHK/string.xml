@@ -13,6 +13,7 @@
     <string name="order_buy">買入</string>
     <string name="order_sell">賣出</string>
     <string name="order_commission_time">委託時間</string>
+    <string name="order_status">狀態</string>
 
     <string name="assets_total">当前資產總估值</string>
     <string name="asset_text">估值:</string>
@@ -23,4 +24,17 @@
 
     <string name="tab_my_commission">我的委託</string>
     <string name="tab_history_order">歷史訂單</string>
+
+    <string-array name="order_status">
+        <item>全部</item>
+        <item>未處理</item>
+        <item>未成交</item>
+        <item>部分成交</item>
+        <item>全部成交</item>
+        <item>撤單</item>
+    </string-array>
+    <string name="start_time">起始時間</string>
+    <string name="end_time">結束時間</string>
+    <string name="reset">重置</string>
+    <string name="please_select">請選擇</string>
 </resources>

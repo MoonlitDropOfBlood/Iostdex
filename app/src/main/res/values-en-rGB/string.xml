@@ -13,6 +13,7 @@
     <string name="order_buy">Buy</string>
     <string name="order_sell">Sell</string>
     <string name="order_commission_time">Commission Time</string>
+    <string name="order_status">Status</string>
 
     <string name="assets_total">Current Estimated Value</string>
     <string name="asset_text">Value:</string>
@@ -23,4 +24,17 @@
 
     <string name="tab_my_commission">My Commission</string>
     <string name="tab_history_order">History Order</string>
+
+    <string-array name="order_status">
+        <item>ALL</item>
+        <item>Unprocessed</item>
+        <item>Unfilled</item>
+        <item>Partial Dealed</item>
+        <item>All Dealed</item>
+        <item>Cancel</item>
+    </string-array>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="reset">Reset</string>
+    <string name="please_select">Please Select</string>
 </resources>

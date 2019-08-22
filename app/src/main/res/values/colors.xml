@@ -16,6 +16,8 @@
     <color name="text_color_level_6">#B2B2B3</color>
     <color name="line_color">#DDDDDD</color>
 
+    <color name="shadow">#B2B2B3</color>
+
     <color name="down">#F31818</color>
     <color name="up">#4CAF50</color>
 </resources>

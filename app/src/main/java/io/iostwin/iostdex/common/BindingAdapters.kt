@@ -65,7 +65,7 @@ class BindingAdapters {
             }
         }
 
-        @BindingAdapter("visibility")
+        @BindingAdapter("android:visibility")
         @JvmStatic
         fun viewVisibility(view: View, visible: Boolean) {
             if (visible) {
