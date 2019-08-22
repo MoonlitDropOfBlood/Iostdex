@@ -8,6 +8,7 @@ import io.iostwin.iostdex.R
 import io.iostwin.iostdex.utils.md5
 import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
+import java.math.BigDecimal
 
 
 object User {
@@ -42,3 +43,18 @@ object User {
         })
     }
 }
+
+data class Assets(
+    var total: BigDecimal,
+    val tokenAssets: ArrayList<TokenAssets>
+)
+
+data class TokenAssets(
+    val icon: String,
+    val name: String,
+    val symbol:String,
+    val balance: BigDecimal,
+    val frozenBalance: BigDecimal,
+    val price: BigDecimal,
+    val assess: BigDecimal
+)

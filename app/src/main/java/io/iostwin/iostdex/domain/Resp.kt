@@ -36,6 +36,8 @@ data class RecordOrderResp(
     val user: String
 )
 
+data class TokenBalanceResp(val balance: BigDecimal, val frozen_balances: List<FrozenBalance>)
+
 data class AccountResp(
     val balance: BigDecimal,
     val frozen_balances: List<FrozenBalance>,
@@ -55,7 +57,7 @@ data class GasInfo(
 )
 
 data class RamInfo(
-    val available: String,
-    val total: String,
-    val used: String
+    val available: BigDecimal,
+    val total: BigDecimal,
+    val used: BigDecimal
 )

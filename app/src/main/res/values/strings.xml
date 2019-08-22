@@ -7,5 +7,20 @@
     <string name="login_title">钱包登录</string>
     <string name="login_slogan">首家IOST去中心化交易所</string>
 
+    <string name="order_pair">交易对</string>
+    <string name="order_trade_direction">交易方向</string>
+    <string name="order_buy">买入</string>
+    <string name="order_sell">卖出</string>
+    <string name="order_commission_time">委托时间</string>
+
     <string name="assets_total">当前资产总估值</string>
+    <string name="asset_text">估值:</string>
+    <string name="asset_balance">余额:</string>
+    <string name="asset_frozen">冻结:</string>
+    <string name="logout" translatable="false">logout</string>
+    <string name="assets_all">所有币种</string>
+    <string name="assets_no_zero">非零资产</string>
+
+    <string name="tab_my_commission">我的委托</string>
+    <string name="tab_history_order">历史订单</string>
 </resources>

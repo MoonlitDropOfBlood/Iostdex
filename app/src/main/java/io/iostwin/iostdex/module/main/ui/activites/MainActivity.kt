@@ -9,6 +9,7 @@ import io.iostwin.iostdex.databinding.ActivityMainBinding
 import io.iostwin.iostdex.module.main.ui.fragments.HomeFragment
 import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.domain.LoginMessage
+import io.iostwin.iostdex.domain.LogoutMessage
 import io.iostwin.iostdex.domain.User
 import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
 import io.iostwin.iostdex.module.main.ui.fragments.LoginFragment
@@ -76,6 +77,14 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_assets -> {
                 changeFragment(tabFragment[2])
             }
+        }
+    }
+
+    @Subscribe
+    fun onLogout(message: LogoutMessage) {
+        User.account = null
+        if (binding.navView.selectedItemId == R.id.navigation_order || binding.navView.selectedItemId == R.id.navigation_assets) {
+            changeFragment(loginFragment)
         }
     }
 

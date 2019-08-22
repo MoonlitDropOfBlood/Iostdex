@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="control"
-                type="io.iostwin.iostdex.module.main.control.HomeControl" />
+            name="control"
+            type="io.iostwin.iostdex.module.main.control.HomeControl" />
     </data>
 
-    <LinearLayout
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlHeaderHeight="50dp"
+        tools:context="io.iostwin.iostdex.module.main.ui.fragments.HomeFragment">
+
+        <com.scwang.smartrefresh.header.DeliveryHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context="io.iostwin.iostdex.module.main.ui.fragments.HomeFragment">
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:theme="@style/Theme.AppCompat.Light.DarkActionBar"
                 app:title="@string/title_home"
                 app:titleTextColor="@android:color/white" />
-
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                android:id="@+id/refreshLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srlHeaderHeight="50dp">
-
-            <com.scwang.smartrefresh.header.DeliveryHeader
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
             <!--suppress AndroidUnknownAttribute -->
             <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adapter="@{control.adapter}"
-                    android:background="@android:color/white"
-                    android:divider="#0D000000"
-                    android:dividerHeight="1dp"
-                    android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
-                    android:overScrollMode="never"
-                    android:scrollbars="none" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adapter="@{control.adapter}"
+                android:background="@android:color/white"
+                android:divider="#0D000000"
+                android:dividerHeight="1dp"
+                android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    </LinearLayout>
 </layout>

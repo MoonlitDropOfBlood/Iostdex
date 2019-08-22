@@ -8,5 +8,19 @@
     <string name="login_title">Wallet login</string>
     <string name="login_slogan">The first IOST DEX</string>
 
+    <string name="order_pair">Pair</string>
+    <string name="order_trade_direction">Trade Direction</string>
+    <string name="order_buy">Buy</string>
+    <string name="order_sell">Sell</string>
+    <string name="order_commission_time">Commission Time</string>
+
     <string name="assets_total">Current Estimated Value</string>
+    <string name="asset_text">Value:</string>
+    <string name="asset_balance">Balance:</string>
+    <string name="asset_frozen">Frozen:</string>
+    <string name="assets_all">All Token</string>
+    <string name="assets_no_zero">Value>0 IOST</string>
+
+    <string name="tab_my_commission">My Commission</string>
+    <string name="tab_history_order">History Order</string>
 </resources>

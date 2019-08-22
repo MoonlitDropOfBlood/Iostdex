@@ -8,5 +8,19 @@
     <string name="login_title">錢包登錄</string>
     <string name="login_slogan">首家IOST去中心化交易所</string>
 
+    <string name="order_pair">交易對</string>
+    <string name="order_trade_direction">交易方向</string>
+    <string name="order_buy">買入</string>
+    <string name="order_sell">賣出</string>
+    <string name="order_commission_time">委託時間</string>
+
     <string name="assets_total">当前資產總估值</string>
+    <string name="asset_text">估值:</string>
+    <string name="asset_balance">餘額:</string>
+    <string name="asset_frozen">凍結:</string>
+    <string name="assets_all">所有幣種</string>
+    <string name="assets_no_zero">非零資產</string>
+
+    <string name="tab_my_commission">我的委託</string>
+    <string name="tab_history_order">歷史訂單</string>
 </resources>

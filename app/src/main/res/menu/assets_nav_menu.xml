@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_assets_all"
+        android:title="@string/assets_all"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@drawable/ic_logout_white_24dp"
+        android:title="@string/logout"
+        app:showAsAction="always" />
+</menu>

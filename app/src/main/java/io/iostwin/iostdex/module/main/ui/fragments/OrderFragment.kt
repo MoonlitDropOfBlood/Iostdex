@@ -31,12 +31,12 @@ class OrderFragment : BaseFragment() {
     private fun success(response: ArrayList<TokenSymbolResp>) {
         tokenSymbols.addAll(response)
         for (item in tokenSymbols) {
-            binding.tokenSymbol.addTab(binding.tokenSymbol.newTab().setText(item.name))
+//            binding.tokenSymbol.addTab(binding.tokenSymbol.newTab().setText(item.name))
         }
         initData()
     }
 
     override fun initData() {
-        tokenSymbols[binding.tokenSymbol.selectedTabPosition]
+//        tokenSymbols[binding.tokenSymbol.selectedTabPosition]
     }
 }
