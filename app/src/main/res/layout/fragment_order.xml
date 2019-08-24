@@ -11,272 +11,284 @@
             type="io.iostwin.iostdex.module.main.control.OrderControl" />
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="end">
+        android:layout_height="match_parent">
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_color"
-            app:srlHeaderHeight="50dp">
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:openDrawer="end">
 
-            <com.scwang.smartrefresh.header.DeliveryHeader
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:background="@color/colorPrimary">
-
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/tab_my_commission"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:button="@null"
-                            android:checked="@{control.tab}"
-                            android:gravity="center"
-                            android:text="@string/tab_my_commission"
-                            android:textColor="@color/color_tab_selected" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <View
-                                android:layout_width="1px"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:layout_margin="16dp"
-                                android:background="@android:color/white" />
-                        </FrameLayout>
-
-                        <RadioButton
-                            android:id="@+id/tab_history_orders"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:button="@null"
-                            android:checked="@{!control.tab}"
-                            android:gravity="center"
-                            android:text="@string/tab_history_order"
-                            android:textColor="@color/color_tab_selected" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1" />
-
-                    </RadioGroup>
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:contentDescription="@string/app_name"
-                        android:onClick="@{v -> control.filtrate()}"
-                        android:padding="12dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_filtrate_white_200dp" />
-                </FrameLayout>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="end">
-
-            <FrameLayout
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="@color/background_color"
+                app:srlHeaderHeight="50dp">
+
+                <com.scwang.smartrefresh.header.DeliveryHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/order_pair" />
+                        android:layout_height="?actionBarSize"
+                        android:background="@color/colorPrimary">
 
-                    <!--suppress AndroidUnknownAttribute -->
-                    <Spinner
-                        android:id="@+id/order_pair"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:adapter="@{control.symbolAdapter}" />
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <RadioButton
+                                android:id="@+id/tab_my_commission"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:checked="@{control.tab}"
+                                android:gravity="center"
+                                android:text="@string/tab_my_commission"
+                                android:textColor="@color/color_tab_selected" />
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <View
+                                    android:layout_width="1px"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="16dp"
+                                    android:background="@android:color/white" />
+                            </FrameLayout>
+
+                            <RadioButton
+                                android:id="@+id/tab_history_orders"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:checked="@{!control.tab}"
+                                android:gravity="center"
+                                android:text="@string/tab_history_order"
+                                android:textColor="@color/color_tab_selected" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                        </RadioGroup>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:contentDescription="@string/app_name"
+                            android:onClick="@{v -> control.filtrate()}"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_filtrate_white_200dp" />
+                    </FrameLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <com.google.android.material.navigation.NavigationView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="@{control.tab}">
+                        android:padding="16dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:text="@string/order_trade_direction" />
-
-                        <RadioGroup
-                            android:id="@+id/order_direction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:orientation="horizontal">
+                            android:text="@string/order_pair" />
 
-                            <RadioButton
-                                android:id="@+id/order_buy"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_button_direction_drak"
-                                android:button="@null"
-                                android:gravity="center"
-                                android:padding="8dp"
-                                android:text="@string/order_buy"
-                                android:textColor="@color/color_button_direction" />
-
-                            <View
-                                android:layout_width="24dp"
-                                android:layout_height="match_parent" />
-
-                            <RadioButton
-                                android:id="@+id/order_sell"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_button_direction_drak"
-                                android:button="@null"
-                                android:gravity="center"
-                                android:padding="8dp"
-                                android:text="@string/order_sell"
-                                android:textColor="@color/color_button_direction" />
-                        </RadioGroup>
-
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <!--suppress AndroidUnknownAttribute -->
+                        <Spinner
+                            android:id="@+id/order_pair"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:text="@string/order_commission_time" />
+                            android:layout_marginTop="12dp"
+                            android:adapter="@{control.symbolAdapter}" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:visibility="@{control.tab}">
 
-                            <EditText
-                                android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="false"
-                                android:focusableInTouchMode="false"
-                                android:gravity="center"
-                                android:hint="@string/start_time"
-                                android:text="@{control.startTime}" />
+                                android:layout_marginTop="24dp"
+                                android:text="@string/order_trade_direction" />
 
-                            <View
-                                android:layout_width="12dp"
-                                android:layout_height="1px"
-                                android:layout_gravity="center"
-                                android:layout_margin="8dp"
-                                android:background="@color/text_color_level_5" />
-
-                            <EditText
-                                android:layout_width="0dp"
+                            <RadioGroup
+                                android:id="@+id/order_direction"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="false"
-                                android:focusableInTouchMode="false"
-                                android:gravity="center"
-                                android:hint="@string/end_time"
-                                android:text="@{control.endTime}" />
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal">
 
+                                <RadioButton
+                                    android:id="@+id/order_buy"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_button_direction_drak"
+                                    android:button="@null"
+                                    android:gravity="center"
+                                    android:padding="8dp"
+                                    android:text="@string/order_buy"
+                                    android:textColor="@color/color_button_direction" />
+
+                                <View
+                                    android:layout_width="24dp"
+                                    android:layout_height="match_parent" />
+
+                                <RadioButton
+                                    android:id="@+id/order_sell"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/bg_button_direction_drak"
+                                    android:button="@null"
+                                    android:gravity="center"
+                                    android:padding="8dp"
+                                    android:text="@string/order_sell"
+                                    android:textColor="@color/color_button_direction" />
+                            </RadioGroup>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="24dp"
+                                android:text="@string/order_commission_time" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="@{()->control.selectTime()}"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:gravity="center"
+                                    android:hint="@string/start_time"
+                                    android:padding="8dp"
+                                    android:text="@{control.startTime}" />
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="1px"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="8dp"
+                                    android:background="@color/text_color_level_5" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:gravity="center"
+                                    android:hint="@string/end_time"
+                                    android:padding="8dp"
+                                    android:text="@{control.endTime}" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="24dp"
+                                android:text="@string/order_status" />
+
+                            <Spinner
+                                android:id="@+id/order_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:entries="@array/order_status" />
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:text="@string/order_status" />
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_reset"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:onClick="@{v -> control.reset()}"
+                            android:text="@string/reset" />
 
-                        <Spinner
-                            android:id="@+id/order_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:entries="@array/order_status" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_ok"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:onClick="@{v -> control.ok()}"
+                            android:text="@android:string/ok"
+                            android:textColor="@android:color/white" />
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_gravity="bottom"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_button_reset"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:onClick="@{v -> control.reset()}"
-                        android:text="@string/reset" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_button_ok"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:onClick="@{v -> control.ok()}"
-                        android:text="@android:string/ok"
-                        android:textColor="@android:color/white" />
-                </LinearLayout>
-            </FrameLayout>
-        </com.google.android.material.navigation.NavigationView>
-    </androidx.drawerlayout.widget.DrawerLayout>
+                </FrameLayout>
+            </com.google.android.material.navigation.NavigationView>
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,7 +13,7 @@ import io.iostwin.iostdex.module.main.control.OrderListControl
 import org.greenrobot.eventbus.EventBus
 
 class OrderListFragment : BaseFragment() {
-    private lateinit var control: OrderListControl<*>
+    private var control: OrderListControl<*>? = null
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         val binding = DataBindingUtil.inflate<FragmentOrderListBinding>(
             inflater,
@@ -21,12 +21,14 @@ class OrderListFragment : BaseFragment() {
             container,
             false
         )
-        if (arguments!!.getBoolean("fist")) {
-            control = CommissionControl()
+        control = if (arguments!!.getBoolean("fist")) {
+            CommissionControl()
         } else {
-            control = HistoryControl()
+            HistoryControl()
         }
-
+        if (control is CommissionControl) {
+            EventBus.getDefault().register(control)
+        }
         binding.control = control
         return binding.root
     }
@@ -37,9 +39,11 @@ class OrderListFragment : BaseFragment() {
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser) {
-            EventBus.getDefault().register(control)
+            if (control != null)
+                EventBus.getDefault().register(control)
         } else {
-            EventBus.getDefault().unregister(control)
+            if (control != null)
+                EventBus.getDefault().unregister(control)
         }
     }
 }

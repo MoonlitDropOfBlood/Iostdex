@@ -37,4 +37,27 @@
     <string name="end_time">End Time</string>
     <string name="reset">Reset</string>
     <string name="please_select">Please Select</string>
+
+    <string name="order_finish_amount">Finish Amount</string>
+    <string name="order_commission_price">Commission Price</string>
+    <string name="order_finish_price">Finish Price</string>
+    <string name="order_commission_volume">Commission Volume</string>
+    <string name="order_finish_num">Finish Volume</string>
+    <string name="order_to_user">To User</string>
+    <string name="order_fee">Fee</string>
+    <string name="material_calendar_today_button">Today</string>
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
 </resources>

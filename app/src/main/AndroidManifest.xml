@@ -8,6 +8,7 @@
     a disconnected to a connected network state.
     -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".IOSTDexApp"
@@ -16,7 +17,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.web.WebActivity"></activity>
+        <activity android:name=".module.web.WebActivity"/>
         <activity
             android:name=".common.UriProxyActivity"
             android:exported="true">

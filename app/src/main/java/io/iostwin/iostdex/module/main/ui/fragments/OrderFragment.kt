@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.viewpager.widget.ViewPager
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.common.BaseFragment
 import io.iostwin.iostdex.databinding.FragmentOrderBinding
@@ -27,6 +28,31 @@ class OrderFragment : BaseFragment() {
             false
         )
         binding.viewPager.adapter = OrderPagerAdapter(childFragmentManager)
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (control.tab.get() != (position == 0))
+                    control.tab.set(position == 0)
+            }
+
+        })
+        binding.tabMyCommission.setOnClickListener {
+            if (binding.viewPager.currentItem != 0)
+                binding.viewPager.currentItem = 0
+        }
+        binding.tabHistoryOrders.setOnClickListener {
+            if (binding.viewPager.currentItem != 1)
+                binding.viewPager.currentItem = 1
+        }
         control = OrderControl(binding)
         binding.control = control
         NetConfig.getService(ApiService::class.java).chartAll().enqueue(HttpCallBack(this::success))
@@ -40,7 +66,6 @@ class OrderFragment : BaseFragment() {
 
     override fun initData() {
     }
-
 
 
     override fun onDestroy() {

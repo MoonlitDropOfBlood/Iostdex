@@ -13,7 +13,7 @@ import io.iostwin.iostdex.netwrok.NetConfig
 class HistoryControl : OrderListControl<HistoryOrderResp>() {
     override fun getLayoutRes(): Int = R.layout.item_history
 
-    override fun OnItemClick(view: View, position: Int) {
+    override fun itemClick(view: View, position: Int) {
         Router.startUri(
             UriRequest(
                 view.context,

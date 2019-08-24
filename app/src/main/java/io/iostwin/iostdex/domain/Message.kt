@@ -8,12 +8,12 @@ data class LogoutMessage(val date: Date)
 
 data class OrderHttpMessage(val isTop: Boolean)
 
-data class OrderFinishMessage(val success: Boolean, val isEnd: Boolean)
+data class OrderFinishMessage(val isTop:Boolean,val success: Boolean, val isEnd: Boolean)
 
 data class OrderFiltrateMessage(
     val symbol: String,
     val direction: Int? = null,
-    val status: Int = 0,
+    val status: Int? = null,
     val startTime: Int? = null,
     val endTime: Int? = null
 )

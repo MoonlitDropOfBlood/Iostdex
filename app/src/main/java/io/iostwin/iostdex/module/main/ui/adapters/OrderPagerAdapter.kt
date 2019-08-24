@@ -16,7 +16,7 @@ class OrderPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter
         fragments[0].arguments = f0
         val f1 = Bundle()
         f1.putBoolean("fist",false)
-        fragments[1].arguments = f0
+        fragments[1].arguments = f1
     }
 
     override fun getItem(position: Int): Fragment = fragments[position]

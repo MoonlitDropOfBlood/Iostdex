@@ -46,25 +46,47 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    /**
+     * 网络
+     */
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation "com.squareup.okhttp3:okhttp:4.1.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
+    /**
+     * 图片加载
+     */
     implementation("com.github.bumptech.glide:glide:4.9.0") {
         exclude group: "com.android.support"
     }
     implementation("com.github.bumptech.glide:okhttp3-integration:4.9.0") {
         exclude group: "com.android.support"
     }
-    implementation 'com.sankuai.waimai.router:router:1.2.0'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    kapt 'com.sankuai.waimai.router:compiler:1.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    /**
+     * 时间总线
+     */
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    /**
+     * 路由
+     */
+    implementation 'com.sankuai.waimai.router:router:1.2.0'
+    kapt 'com.sankuai.waimai.router:compiler:1.2.0'
+    /**
+     * TPWallet-SDK
+     */
     implementation 'com.tokenpocket.lab:wallet-sdk:1.1.2'
+    /**
+     * 刷新组件
+     */
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'  //1.0.5及以前版本的老用户升级需谨慎，API改动过大
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'  //没有使用特殊Header，可以不加这行
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    /**
+     * 时间选择器
+     */
+    implementation 'com.applandeo:material-calendar-view:1.6.0'
 }

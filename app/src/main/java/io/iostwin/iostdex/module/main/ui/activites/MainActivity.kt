@@ -1,6 +1,7 @@
 package io.iostwin.iostdex.module.main.ui.activites
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import io.iostwin.iostdex.R
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     @Subscribe
     fun onLogout(message: LogoutMessage) {
+        Log.i("Logout", message.date.toString())
         User.account = null
         if (binding.navView.selectedItemId == R.id.navigation_order || binding.navView.selectedItemId == R.id.navigation_assets) {
             changeFragment(loginFragment)

@@ -9,9 +9,11 @@ import io.iostwin.iostdex.databinding.FragmentOrderBinding
 import io.iostwin.iostdex.domain.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.applandeo.materialcalendarview.builders.DatePickerBuilder
+import com.applandeo.materialcalendarview.CalendarView
+import io.iostwin.iostdex.common.BindingAdapters
 
 
 class OrderControl(private val binding: FragmentOrderBinding) {
@@ -54,7 +56,10 @@ class OrderControl(private val binding: FragmentOrderBinding) {
 
     @Subscribe
     fun onOrderFinish(message: OrderFinishMessage) {
-        binding.refreshLayout.finishRefresh(300, message.success, message.isEnd)
+        if (message.isTop)
+            binding.refreshLayout.finishRefresh(300, message.success, message.isEnd)
+        else
+            binding.refreshLayout.finishLoadMore(300, message.success, message.isEnd)
     }
 
     fun ok() {
@@ -63,15 +68,16 @@ class OrderControl(private val binding: FragmentOrderBinding) {
         if (tab.get()) {
             var startTime: Int? = null
             var endTime: Int? = null
-            val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             this.startTime.get()?.apply {
                 if (this != "")
-                    startTime = (format.parse(this)!!.time / 1000).toInt()
+                    startTime = (BindingAdapters.simpleDateFormat.parse(this)!!.time / 1000).toInt()
             }
             this.endTime.get()?.apply {
                 if (this != "")
-                    endTime = (format.parse(this)!!.time / 1000).toInt() + 86400
+                    endTime =
+                        (BindingAdapters.simpleDateFormat.parse(this)!!.time / 1000).toInt() + 86400
             }
+
             EventBus.getDefault().post(
                 OrderFiltrateMessage(
                     symbol,
@@ -80,7 +86,12 @@ class OrderControl(private val binding: FragmentOrderBinding) {
                         R.id.order_sell -> 0
                         else -> null
                     },
-                    binding.orderStatus.selectedItemPosition,
+                    (binding.orderStatus.selectedItemPosition - 2).run {
+                        if (this < -1)
+                            return@run null
+                        else
+                            return@run this
+                    },
                     startTime,
                     endTime
                 )
@@ -89,6 +100,25 @@ class OrderControl(private val binding: FragmentOrderBinding) {
             EventBus.getDefault().post(OrderFiltrateMessage(symbol))
         }
         binding.refreshLayout.autoRefresh()
+    }
+
+    fun selectTime() {
+        val min = Calendar.getInstance()
+        min.set(2019, 4, 10, 0, 0, 0)
+        val max = Calendar.getInstance()
+        val builder = DatePickerBuilder(binding.root.context) {
+            if (it.size > 0) {
+                startTime.set(BindingAdapters.simpleDateFormat.format(it[0].time))
+                endTime.set(BindingAdapters.simpleDateFormat.format(it[it.size - 1].time))
+            }
+        }
+            .setPickerType(CalendarView.RANGE_PICKER)
+            .setMaximumDate(max)
+            .setMinimumDate(min)
+
+        val datePicker = builder.build()
+        R.layout.date_picker_dialog
+        datePicker.show()
     }
 
     fun filtrate() {

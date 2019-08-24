@@ -37,4 +37,27 @@
     <string name="end_time">結束時間</string>
     <string name="reset">重置</string>
     <string name="please_select">請選擇</string>
+
+    <string name="order_finish_amount">成交額</string>
+    <string name="order_commission_price">委託價</string>
+    <string name="order_finish_price">成交價</string>
+    <string name="order_commission_volume">委託量</string>
+    <string name="order_finish_num">成交量</string>
+    <string name="order_to_user">成交對象</string>
+    <string name="order_fee">手續費</string>
+    <string name="material_calendar_today_button">今天</string>
+    <array name="material_calendar_months_array">
+        <item>一月</item>
+        <item>二月</item>
+        <item>三月</item>
+        <item>四月</item>
+        <item>五月</item>
+        <item>六月</item>
+        <item>七月</item>
+        <item>八月</item>
+        <item>九月</item>
+        <item>十月</item>
+        <item>十一月</item>
+        <item>十二月</item>
+    </array>
 </resources>

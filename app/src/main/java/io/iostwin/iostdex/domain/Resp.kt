@@ -46,7 +46,7 @@ data class HistoryOrderResp(
     @SerializedName("feesymbol") val feeSymbol: String,
     val finishAmount: BigDecimal,
     val finishNum: BigDecimal,
-    val finishTime: Int,
+    val finishTime: Long,
     val fromUser: String,
     val id: Int,
     val orderId: Int,

@@ -37,4 +37,29 @@
     <string name="end_time">结束时间</string>
     <string name="reset">重置</string>
     <string name="please_select">请选择</string>
+
+    <string name="order_finish_amount">成交额</string>
+    <string name="order_commission_price">委托价</string>
+    <string name="order_finish_price">成交价</string>
+    <string name="order_commission_volume">委托量</string>
+    <string name="order_finish_num">成交量</string>
+    <string name="order_to_user">成交对象</string>
+    <string name="order_fee">手续费</string>
+    <string name="material_calendar_today_button">今天</string>
+    <string name="material_calendar_positive_button" translatable="false">@android:string/ok</string>
+    <string name="material_calendar_negative_button" translatable="false">@android:string/cancel</string>
+    <array name="material_calendar_months_array">
+        <item>一月</item>
+        <item>二月</item>
+        <item>三月</item>
+        <item>四月</item>
+        <item>五月</item>
+        <item>六月</item>
+        <item>七月</item>
+        <item>八月</item>
+        <item>九月</item>
+        <item>十月</item>
+        <item>十一月</item>
+        <item>十二月</item>
+    </array>
 </resources>
