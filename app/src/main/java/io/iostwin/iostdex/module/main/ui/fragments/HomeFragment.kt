@@ -10,9 +10,8 @@ import io.iostwin.iostdex.databinding.FragmentHomeBinding
 import io.iostwin.iostdex.module.main.control.HomeControl
 
 
-
 class HomeFragment : BaseFragment() {
-    private lateinit var binding:FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     override fun initView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.control = HomeControl(binding)
@@ -20,5 +19,24 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initData() {
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) {
+            binding.control?.stop()
+        } else {
+            binding.control?.start()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.control?.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.control?.stop()
     }
 }

@@ -21,6 +21,7 @@ android {
         buildConfigField 'String', 'BASE_URL', '"https://api.iostwin.io"'
         buildConfigField 'String', 'RES_URL', '"https://www.iostdex.io"'
         buildConfigField 'String', 'IOST_NET', '"api.iost.io"'
+        buildConfigField 'String', 'WS_URL', '"https://ws.iostwin.io/"'
     }
     buildTypes {
         release {
@@ -89,4 +90,9 @@ dependencies {
      * 时间选择器
      */
     implementation 'com.applandeo:material-calendar-view:1.6.0'
+
+    implementation ('io.socket:socket.io-client:1.0.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
 }

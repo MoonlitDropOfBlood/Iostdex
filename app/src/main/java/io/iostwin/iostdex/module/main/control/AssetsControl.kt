@@ -1,8 +1,11 @@
 package io.iostwin.iostdex.module.main.control
 
+import android.net.Uri
 import android.os.AsyncTask
 import androidx.databinding.ObservableField
 import androidx.databinding.library.baseAdapters.BR
+import com.sankuai.waimai.router.Router
+import com.sankuai.waimai.router.core.UriRequest
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.common.BaseViewAdapter
 import io.iostwin.iostdex.databinding.FragmentAssetsBinding
@@ -46,7 +49,17 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
     }
 
     private fun onItemClick(tokenAssets: TokenAssets) {
-
+        Router.startUri(
+            UriRequest(
+                binding.root.context,
+                Uri.Builder().path("/tokenInfo").appendQueryParameter(
+                    "icon", tokenAssets.icon
+                ).appendQueryParameter("symbol", tokenAssets.symbol).appendQueryParameter(
+                    "name",
+                    tokenAssets.name
+                ).build()
+            )
+        )
     }
 
     private fun sendHttp() {
