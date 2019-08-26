@@ -11,13 +11,14 @@ import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.databinding.ActivityTokenInfoBinding
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import io.iostwin.iostdex.BuildConfig
 import io.iostwin.iostdex.module.trade.service.WebSocketService
-
 
 @RouterUri(path = ["/tokenInfo"])
 class TokenInfoActivity : AppCompatActivity() {
@@ -29,26 +30,28 @@ class TokenInfoActivity : AppCompatActivity() {
             R.layout.activity_token_info
         )
         setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeButtonEnabled(true)
         val uri = intent.data!!
         val symbol = uri.getQueryParameter("symbol")!!
         val icon = uri.getQueryParameter("icon")!!
         val name = uri.getQueryParameter("name")!!
         supportActionBar!!.title = "$name/IOST"
-        @Suppress("DEPRECATION") val target = object : SimpleTarget<Drawable>() {
+        val px = resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin) / 2 * 3
+        @Suppress("DEPRECATION") val target = object : SimpleTarget<Drawable>(px, px) {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                supportActionBar!!.setIcon(resource)
+                val src = LayerDrawable(arrayOf(getDrawable(R.drawable.bg_token_icon), resource))
+                supportActionBar!!.setIcon(src)
             }
         }
+
+        val mRequestOptions = RequestOptions.circleCropTransform()
         Glide.with(this) // could be an issue!
             .load(BuildConfig.RES_URL + icon)
+            .apply(mRequestOptions)
             .into(target)
         val intent = Intent(this, WebSocketService::class.java)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            startForegroundService(Intent(this, WebSocketService::class.java))
-//        } else {
+        intent.putExtra("symbol", symbol)
         startService(intent)
-//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

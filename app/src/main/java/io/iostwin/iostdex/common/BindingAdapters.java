@@ -46,7 +46,7 @@ public class BindingAdapters {
                 imageView.setImageDrawable(errorImage);
             }
         } else {
-            RequestOptions myOptions = new RequestOptions().error(errorImage)
+            RequestOptions myOptions = RequestOptions.circleCropTransform().error(errorImage)
                     .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
             if (defaultImage != null) {
                 myOptions = myOptions.placeholder(defaultImage);
