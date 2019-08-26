@@ -34,10 +34,10 @@ class TokenInfoActivity : AppCompatActivity() {
         val symbol = uri.getQueryParameter("symbol")!!
         val icon = uri.getQueryParameter("icon")!!
         val name = uri.getQueryParameter("name")!!
-        binding.toolbar.title = "$name/IOST"
+        supportActionBar!!.title = "$name/IOST"
         @Suppress("DEPRECATION") val target = object : SimpleTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                binding.toolbar.navigationIcon
+                supportActionBar!!.setIcon(resource)
             }
         }
         Glide.with(this) // could be an issue!
@@ -47,7 +47,7 @@ class TokenInfoActivity : AppCompatActivity() {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            startForegroundService(Intent(this, WebSocketService::class.java))
 //        } else {
-            startService(intent)
+        startService(intent)
 //        }
     }
 

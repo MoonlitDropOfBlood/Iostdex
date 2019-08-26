@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.price.toPlainString()}" />
+                    android:text="@{viewModel.finishAmount.divide(viewModel.finishNum,8,4).toPlainString()}" />
             </LinearLayout>
 
             <LinearLayout
