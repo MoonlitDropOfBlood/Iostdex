@@ -30,4 +30,13 @@ class TokenInfoControl {
             volume.set(volumeMainToken.toPlainString() + "IOST")
         }
     }
+
+    fun swapTotal() {
+        isToken = !isToken
+        if (isToken) {
+            volume.set(volumeToken.toPlainString())
+        } else {
+            volume.set(volumeMainToken.toPlainString() + "IOST")
+        }
+    }
 }

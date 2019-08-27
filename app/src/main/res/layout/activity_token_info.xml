@@ -108,6 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/text_data3"
                         android:layout_toStartOf="@id/text_data3"
+                        android:onClick="@{()->control.swapTotal()}"
                         android:drawableStart="@drawable/ic_swap_vert_gray_12dp"
                         android:text="@string/trade_volume"
                         android:textColor="@color/text_color_level_5"
