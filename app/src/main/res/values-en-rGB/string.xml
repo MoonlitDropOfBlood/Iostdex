@@ -60,4 +60,7 @@
         <item>November</item>
         <item>December</item>
     </array>
+    <string name="trade_max">24H High:</string>
+    <string name="trade_min">24H Low:</string>
+    <string name="trade_volume">24H:</string>
 </resources>

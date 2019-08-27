@@ -12,16 +12,19 @@ import io.iostwin.iostdex.R
 import io.iostwin.iostdex.databinding.ActivityTokenInfoBinding
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
-import android.os.Build
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import io.iostwin.iostdex.BuildConfig
+import io.iostwin.iostdex.module.trade.control.TokenInfoControl
 import io.iostwin.iostdex.module.trade.service.WebSocketService
+import org.greenrobot.eventbus.EventBus
 
 @RouterUri(path = ["/tokenInfo"])
 class TokenInfoActivity : AppCompatActivity() {
+
+    private lateinit var control: TokenInfoControl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +32,18 @@ class TokenInfoActivity : AppCompatActivity() {
             this,
             R.layout.activity_token_info
         )
-        setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setHomeButtonEnabled(true)
+        control = TokenInfoControl()
+        binding.control = control
+        EventBus.getDefault().register(control)
         val uri = intent.data!!
         val symbol = uri.getQueryParameter("symbol")!!
         val icon = uri.getQueryParameter("icon")!!
         val name = uri.getQueryParameter("name")!!
-        supportActionBar!!.title = "$name/IOST"
+        setSupportActionBar(binding.toolbar)
+        supportActionBar!!.apply {
+            setHomeButtonEnabled(true)
+            title = "$name/IOST"
+        }
         val px = resources.getDimensionPixelOffset(R.dimen.activity_horizontal_margin) / 2 * 3
         @Suppress("DEPRECATION") val target = object : SimpleTarget<Drawable>(px, px) {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
@@ -43,7 +51,6 @@ class TokenInfoActivity : AppCompatActivity() {
                 supportActionBar!!.setIcon(src)
             }
         }
-
         val mRequestOptions = RequestOptions.circleCropTransform()
         Glide.with(this) // could be an issue!
             .load(BuildConfig.RES_URL + icon)
@@ -64,6 +71,7 @@ class TokenInfoActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        EventBus.getDefault().unregister(control)
         stopService(Intent(this, WebSocketService::class.java))
     }
 }

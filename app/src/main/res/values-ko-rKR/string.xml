@@ -61,4 +61,8 @@
         <item>11월</item>
         <item>12월</item>
     </array>
+
+    <string name="trade_max">24H최고가:</string>
+    <string name="trade_min">24H최저가:</string>
+    <string name="trade_volume">24H거래량:</string>
 </resources>

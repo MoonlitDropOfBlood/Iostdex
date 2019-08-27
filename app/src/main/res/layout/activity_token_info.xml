@@ -3,9 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <import type="java.math.BigDecimal" />
+
+        <variable
+            name="control"
+            type="io.iostwin.iostdex.module.trade.control.TokenInfoControl" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".module.trade.ui.activites.TokenInfoActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -18,5 +28,102 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:titleTextColor="@android:color/white" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:elevation="0dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+
+                    <TextView
+                        android:id="@+id/text_data1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{control.max.toPlainString()}"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text_data2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_data1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="4dp"
+                        android:text="@{control.min.toPlainString()}"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text_data3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_data2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="4dp"
+                        android:text="@{control.volume}"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/text_data1"
+                        android:text="@string/trade_max"
+                        android:textColor="@color/text_color_level_5"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/text1"
+                        android:text="@{control.price.toPlainString()}"
+                        android:textColor="@{control.percent.compareTo(BigDecimal.ZERO) == 0 ? @color/text_color_level_1 : control.percent.compareTo(BigDecimal.ZERO) == 1 ? @color/up:@color/down}"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/text_data2"
+                        android:layout_toStartOf="@id/text_data2"
+                        android:text="@string/trade_min"
+                        android:textColor="@color/text_color_level_5"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/text_data3"
+                        android:layout_toStartOf="@id/text_data3"
+                        android:drawableStart="@drawable/ic_swap_vert_gray_12dp"
+                        android:text="@string/trade_volume"
+                        android:textColor="@color/text_color_level_5"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/text_data3"
+                        android:text="@{control.percent.toPlainString()+`%`}"
+                        android:textColor="@{control.percent.compareTo(BigDecimal.ZERO) == 0 ? @color/text_color_level_1 : control.percent.compareTo(BigDecimal.ZERO) == 1 ? @color/up:@color/down}"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
 </layout>

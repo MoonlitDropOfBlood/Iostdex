@@ -87,7 +87,7 @@ data class WebSocketTradeMessage(
     val buy: List<Order>?,
     val desc: String?,
     val digit: Int?,
-    val his: List<Hi>?,
+    val his: List<History>?,
     val icon: String?,
     val isenabled: Int?,
     val maxprice_24h: BigDecimal?,
@@ -108,7 +108,7 @@ data class WebSocketTradeMessage(
     val website: String?
 )
 
-data class Hi(
+data class History(
     val buy: Int,
     val id: Int,
     val num: BigDecimal,

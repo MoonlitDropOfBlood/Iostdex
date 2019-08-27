@@ -62,4 +62,8 @@
         <item>十一月</item>
         <item>十二月</item>
     </array>
+
+    <string name="trade_max">24H最高:</string>
+    <string name="trade_min">24H最低:</string>
+    <string name="trade_volume">24H量:</string>
 </resources>

@@ -5,9 +5,10 @@ import android.content.Intent
 import android.os.IBinder
 import com.google.gson.Gson
 import io.iostwin.iostdex.BuildConfig
-import io.iostwin.iostdex.domain.WebSocketTradeMessage
+import io.iostwin.iostdex.domain.*
 import io.socket.client.IO
 import io.socket.client.Socket
+import org.greenrobot.eventbus.EventBus
 
 
 class WebSocketService : Service() {
@@ -27,14 +28,53 @@ class WebSocketService : Service() {
         socket!!.on("TradeMessage") {
             val json = it[0].toString()
             val message = gson.fromJson(json, WebSocketTradeMessage::class.java)
-            if (message.his != null) {
-
+            message.his?.run {
+                EventBus.getDefault().post(HistoryMessage(arrayListOf(*this.toTypedArray())))
             }
-            if (message.buy != null) {
-
+            message.buy?.run {
+                EventBus.getDefault()
+                    .post(OrderMessage(1, arrayListOf(*this.toTypedArray())))
             }
-            if (message.sell != null) {
-
+            message.sell?.run {
+                EventBus.getDefault()
+                    .post(OrderMessage(0, arrayListOf(*this.toTypedArray())))
+            }
+            message.apply {
+                if (amount_24h != null) {
+                    EventBus.getDefault()
+                        .post(
+                            PriceMessage(
+                                amount_24h,
+                                maxprice_24h!!,
+                                minprice_24h!!,
+                                percent_24h!!,
+                                volumn_24h!!,
+                                price!!,
+                                supply!!
+                            )
+                        )
+                }
+//                if (price_lasthour != null) {
+//                    EventBus.getDefault()
+//                        .post(
+//                            LastPriceMessage(
+//                                price_lasthour,
+//                                volumn_lasthour!!
+//                            )
+//                        )
+//                }
+                if (maxsupply != null) {
+                    EventBus.getDefault()
+                        .post(
+                            TokenInfoMessage(
+                                website,
+                                maxsupply,
+                                symbol,
+                                desc,
+                                icon!!
+                            )
+                        )
+                }
             }
         }
         socket!!.open()
