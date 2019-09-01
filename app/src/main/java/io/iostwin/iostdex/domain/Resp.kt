@@ -1,7 +1,11 @@
 package io.iostwin.iostdex.domain
 
+import com.github.fujianlian.klinechart.KLineEntity
+import com.github.fujianlian.klinechart.utils.DateUtil
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class TokenSymbolResp(
     val digit: Int,
@@ -121,3 +125,28 @@ data class Order(
     val balance: BigDecimal,
     val price: BigDecimal
 )
+
+data class ChartHistoryResp(
+    val c: List<BigDecimal>,
+    val h: List<BigDecimal>,
+    val l: List<BigDecimal>,
+    val o: List<BigDecimal>,
+    val s: String,
+    val t: List<Int>,
+    val v: List<BigDecimal>
+) {
+    fun toKLineEntity(): ArrayList<KLineEntity> {
+        val data = arrayListOf<KLineEntity>()
+        for (i in c.indices) {
+            val item = KLineEntity()
+            item.Open = o[i].toFloat()
+            item.High = h[i].toFloat()
+            item.Low = l[i].toFloat()
+            item.Close = c[i].toFloat()
+            item.Volume = v[i].toFloat()
+            item.Date = DateUtil.DateFormat.format(Date(t[i].toLong() * 1000L))
+            data.add(item)
+        }
+        return data
+    }
+}

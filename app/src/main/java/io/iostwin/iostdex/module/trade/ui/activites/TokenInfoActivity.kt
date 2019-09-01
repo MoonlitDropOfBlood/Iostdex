@@ -32,13 +32,14 @@ class TokenInfoActivity : AppCompatActivity() {
             this,
             R.layout.activity_token_info
         )
-        control = TokenInfoControl()
-        binding.control = control
-        EventBus.getDefault().register(control)
         val uri = intent.data!!
         val symbol = uri.getQueryParameter("symbol")!!
         val icon = uri.getQueryParameter("icon")!!
         val name = uri.getQueryParameter("name")!!
+        control = TokenInfoControl(binding, symbol)
+        binding.control = control
+        EventBus.getDefault().register(control)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.apply {
             setHomeButtonEnabled(true)

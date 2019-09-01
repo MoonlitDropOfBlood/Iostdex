@@ -12,10 +12,9 @@
             type="io.iostwin.iostdex.module.trade.control.TokenInfoControl" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".module.trade.ui.activites.TokenInfoActivity">
 
         <androidx.appcompat.widget.Toolbar
@@ -30,21 +29,24 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:layout_below="@+id/toolbar"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/white"
+                android:orientation="vertical"
                 app:elevation="0dp">
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
-
+                    android:padding="8dp"
+                    app:layout_scrollFlags="scroll">
 
                     <TextView
                         android:id="@+id/text_data1"
@@ -108,8 +110,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/text_data3"
                         android:layout_toStartOf="@id/text_data3"
-                        android:onClick="@{()->control.swapTotal()}"
                         android:drawableStart="@drawable/ic_swap_vert_gray_12dp"
+                        android:onClick="@{()->control.swapTotal()}"
                         android:text="@string/trade_volume"
                         android:textColor="@color/text_color_level_5"
                         android:textSize="12sp" />
@@ -123,8 +125,145 @@
                         android:textSize="12sp" />
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_color"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    app:layout_scrollFlags="scroll">
+
+                    <RadioGroup
+                        android:id="@+id/chart_kd"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/chart_1m"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="1m"
+                            android:textColor="@color/color_trade_chart" />
+
+                        <RadioButton
+                            android:id="@+id/chart_15m"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="15m"
+                            android:textColor="@color/color_trade_chart" />
+
+                        <RadioButton
+                            android:id="@+id/chart_4h"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="4h"
+                            android:textColor="@color/color_trade_chart" />
+
+                        <RadioButton
+                            android:id="@+id/chart_1d"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="1D"
+                            android:textColor="@color/color_trade_chart" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/color_trade_chart" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_level_6" />
+                </LinearLayout>
+
+                <com.github.fujianlian.klinechart.KLineChartView
+                    android:id="@+id/kLineChartView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:layout_scrollFlags="scroll" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabSelectedTextColor="@color/colorPrimary">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="111" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="111" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="111" />
+                </com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_home_percent_up"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/order_buy"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_home_percent_down"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/order_sell"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
 </layout>

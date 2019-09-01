@@ -1,14 +1,8 @@
 package io.iostwin.iostdex.netwrok
 
-import io.iostwin.iostdex.domain.HistoryOrderResp
-import io.iostwin.iostdex.domain.PageResp
-import io.iostwin.iostdex.domain.RecordOrderResp
-import io.iostwin.iostdex.domain.TokenSymbolResp
+import io.iostwin.iostdex.domain.*
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -28,4 +22,11 @@ interface ApiService {
     fun his(
         @Field("page") page: Int, @Field("symbol") symbol: String, @Field("user") user: String
     ): Call<PageResp<HistoryOrderResp>>
+
+    @GET("/api/chart/history")
+    fun cartHistory(
+        @Query("symbol") symbol: String, @Query("resolution") resolution: String, @Query(
+            "from"
+        ) from: Int, @Query("to") to: Int
+    ): Call<ChartHistoryResp>
 }

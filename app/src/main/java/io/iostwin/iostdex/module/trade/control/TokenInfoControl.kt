@@ -1,20 +1,88 @@
 package io.iostwin.iostdex.module.trade.control
 
 import androidx.databinding.ObservableField
+import com.github.fujianlian.klinechart.DataHelper
+import com.github.fujianlian.klinechart.KLineChartAdapter
+import com.github.fujianlian.klinechart.formatter.DateFormatter
+import io.iostwin.iostdex.R
+import io.iostwin.iostdex.databinding.ActivityTokenInfoBinding
+import io.iostwin.iostdex.domain.ChartHistoryResp
 import io.iostwin.iostdex.domain.PriceMessage
+import io.iostwin.iostdex.netwrok.ApiService
+import io.iostwin.iostdex.netwrok.HttpCallBack
+import io.iostwin.iostdex.netwrok.NetConfig
 import org.greenrobot.eventbus.Subscribe
 import java.math.BigDecimal
 
-class TokenInfoControl {
+class TokenInfoControl(private val binding: ActivityTokenInfoBinding, private val symbol: String) {
     val price = ObservableField<BigDecimal>(BigDecimal.ZERO)
     val percent = ObservableField<BigDecimal>(BigDecimal.ZERO)
     val max = ObservableField<BigDecimal>(BigDecimal.ZERO)
     val min = ObservableField<BigDecimal>(BigDecimal.ZERO)
     val volume = ObservableField<String>("0")
-    var isToken = true
-    var volumeToken = BigDecimal.ZERO
-    var volumeMainToken = BigDecimal.ZERO
+    private var isToken = true
+    private var volumeToken = BigDecimal.ZERO
+    private var volumeMainToken = BigDecimal.ZERO
+    private val adapter = KLineChartAdapter()
+    private var currentResolution = "D"
+    private val resolutions = arrayOf("1", "5", "15", "30", "60", "240", "D", "W", "M")
+    private var fromTime = 1556640000
 
+    init {
+        binding.kLineChartView.adapter = adapter
+        binding.kLineChartView.dateTimeFormatter = DateFormatter()
+        binding.kLineChartView.setGridRows(4)
+        binding.kLineChartView.setGridColumns(4)
+        binding.chartKd.setOnCheckedChangeListener { radioGroup, i ->
+            if (i != -1) {
+                val index = when (i) {
+                    R.id.chart_1m -> 0
+                    R.id.chart_15m -> 1
+                    R.id.chart_4h -> 5
+                    R.id.chart_1d -> 6
+                    else -> 0
+                }
+                changeResolution(index)
+            }
+        }
+        initData()
+        binding.kLineChartView.justShowLoading()
+    }
+
+    private fun changeResolution(index:Int) {
+        adapter.clearData()
+        adapter.notifyDataSetChanged()
+        if (index < 2) {
+            binding.kLineChartView.setMainDrawLine(true)
+        } else {
+            binding.kLineChartView.setMainDrawLine(false)
+        }
+        currentResolution = resolutions[index]
+        initData()
+    }
+
+    private fun initData() {
+        val call =
+            NetConfig.getService(ApiService::class.java)
+                .cartHistory(
+                    symbol,
+                    currentResolution,
+                    fromTime,
+                    (System.currentTimeMillis() / 1000).toInt()
+                )
+        call.enqueue(HttpCallBack(this::onSuccess))
+    }
+
+    private fun onSuccess(resp: ChartHistoryResp) {
+        if (resp.s == "ok") {
+            val data = resp.toKLineEntity()
+            DataHelper.calculate(data)
+            adapter.addFooterData(data)
+            adapter.notifyDataSetChanged()
+            binding.kLineChartView.startAnimation()
+            binding.kLineChartView.refreshComplete()
+        }
+    }
 
     @Subscribe
     fun onPriceMessage(message: PriceMessage) {
