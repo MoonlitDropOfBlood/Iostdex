@@ -74,4 +74,6 @@
     <string name="trade_depth">深度</string>
     <string name="trade_Deal">成交</string>
     <string name="trade_intro">简介</string>
+    <string name="trade_depth_amt">数量</string>
+    <string name="trade_depth_price">价格</string>
 </resources>

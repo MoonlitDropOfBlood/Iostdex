@@ -74,6 +74,8 @@
     <string name="trade_Deal">거래</string>
     <string name="trade_intro">소개</string>
     <string name="depth_map_view_price">가격:</string>
-    <string name="depth_map_view_total_vol">Total Vol:</string>
-    <string name="depth_map_view_total_amt">Total Amt:</string>
+    <string name="depth_map_view_total_vol">총 볼륨:</string>
+    <string name="depth_map_view_total_amt">총 금액:</string>
+    <string name="trade_depth_amt">볼륨</string>
+    <string name="trade_depth_price">가격</string>
 </resources>

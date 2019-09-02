@@ -74,4 +74,6 @@
     <string name="depth_map_view_price">委託價：</string>
     <string name="depth_map_view_total_vol">累計數量：</string>
     <string name="depth_map_view_total_amt">累計金額：</string>
+    <string name="trade_depth_amt">数量</string>
+    <string name="trade_depth_price">價格</string>
 </resources>

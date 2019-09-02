@@ -33,11 +33,11 @@ class WebSocketService : Service() {
             }
             message.buy?.run {
                 EventBus.getDefault()
-                    .post(OrderMessage(1, arrayListOf(*this.toTypedArray())))
+                    .post(OrderMessage(true, arrayListOf(*this.toTypedArray())))
             }
             message.sell?.run {
                 EventBus.getDefault()
-                    .post(OrderMessage(0, arrayListOf(*this.toTypedArray())))
+                    .post(OrderMessage(false, arrayListOf(*this.toTypedArray())))
             }
             message.apply {
                 if (amount_24h != null) {

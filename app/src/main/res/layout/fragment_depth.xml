@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="io.iostwin.iostdex.module.trade.ui.fragments.DepthFragment">
+
+    <data>
+
+        <variable
+            name="control"
+            type="io.iostwin.iostdex.module.trade.control.DepthControl" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.github.lilei.depthmapview.DepthMapView
+            android:id="@+id/depth_map_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:background_color="@android:color/transparent"
+            app:buy_line_color="@color/up"
+            app:buy_path_color="@color/up"
+            app:circle_radius="8dp"
+            app:dot_radius="4dp"
+            app:line_count="4"
+            app:line_width="0.5dp"
+            app:selector_background_color="#252B3E"
+            app:selector_text_color="@android:color/white"
+            app:selector_text_size="12sp"
+            app:sell_line_color="@color/down"
+            app:sell_path_color="@color/down"
+            app:text_color="@color/text_color_level_3"
+            app:text_size="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/depth_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_buy"
+                android:textColor="@color/up" />
+
+            <TextView
+                android:id="@+id/depth_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/order_sell"
+                android:textColor="@color/down" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@{@string/trade_depth_price+`(`+control.mainSymbol+`)`}"
+                android:textColor="@color/text_color_level_6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/depth_buy"
+                android:text="@{@string/trade_depth_amt+`(`+control.tradeSymbol+`)`}"
+                android:textColor="@color/text_color_level_6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/depth_sell"
+                android:text="@{@string/trade_depth_amt+`(`+control.tradeSymbol+`)`}"
+                android:textColor="@color/text_color_level_6" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/depth_buy"
+                android:layout_marginTop="8dp"
+                android:background="@color/line_color" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--suppress AndroidUnknownAttribute -->
+            <io.iostwin.iostdex.widget.ListViewForScrollView
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:adapter="@{control.buyAdapter}"
+                android:enabled="false"
+                android:focusable="false" />
+
+            <!--suppress AndroidUnknownAttribute -->
+            <io.iostwin.iostdex.widget.ListViewForScrollView
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:adapter="@{control.sellAdapter}"
+                android:enabled="false"
+                android:focusable="false" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

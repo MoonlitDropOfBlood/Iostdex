@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  设置背景色  -->
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="#944CAF50" />
+        </shape>
+    </item>
+
+    <!--  设置进度条颜色  -->
+    <item android:id="@android:id/progress">
+        <shape>
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</layer-list>

@@ -73,7 +73,7 @@ class HomeControl(private val binding: FragmentHomeBinding) {
                 ).appendQueryParameter("symbol", tokenSymbol.symbol).appendQueryParameter(
                     "name",
                     tokenSymbol.name
-                ).build()
+                ).appendQueryParameter("decimal",tokenSymbol.digit.toString()).build()
             )
         )
     }

@@ -48,7 +48,6 @@ public class DepthMapView extends View {
     //背景颜色
     private int mBackgroundColor;
 
-    private boolean mIsHave;
     //是否是长按
     private boolean mIsLongPress;
 
@@ -330,11 +329,14 @@ public class DepthMapView extends View {
         canvas.drawColor(mBackgroundColor);
         canvas.save();
         //绘制买入区域
-        drawBuy(canvas);
+        if (!mBuyData.isEmpty())
+            drawBuy(canvas);
         //绘制卖出区域
-        drawSell(canvas);
+        if (!mSellData.isEmpty())
+            drawSell(canvas);
         //绘制界面相关文案
-        drawText(canvas);
+        if (mIsLongPress)
+            drawText(canvas);
         canvas.restore();
     }
 

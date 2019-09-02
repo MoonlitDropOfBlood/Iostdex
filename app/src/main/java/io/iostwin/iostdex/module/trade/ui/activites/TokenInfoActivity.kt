@@ -22,14 +22,19 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.github.fujianlian.klinechart.draw.Status
 import io.iostwin.iostdex.BuildConfig
+import io.iostwin.iostdex.common.BaseFragment
 import io.iostwin.iostdex.databinding.PopwindowTradeIndexBinding
 import io.iostwin.iostdex.databinding.PopwindowTradeMoreBinding
 import io.iostwin.iostdex.domain.OnPopWindowMessage
 import io.iostwin.iostdex.domain.TradeIndexMessage
+import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
+import io.iostwin.iostdex.module.main.ui.fragments.HomeFragment
+import io.iostwin.iostdex.module.main.ui.fragments.OrderFragment
 import io.iostwin.iostdex.module.trade.control.TokenInfoControl
 import io.iostwin.iostdex.module.trade.control.TradeIndexControl
 import io.iostwin.iostdex.module.trade.control.TradeMoreControl
 import io.iostwin.iostdex.module.trade.service.WebSocketService
+import io.iostwin.iostdex.module.trade.ui.fragments.DepthFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -41,6 +46,9 @@ class TokenInfoActivity : AppCompatActivity() {
     private lateinit var index: PopupWindow
     private lateinit var binding: ActivityTokenInfoBinding
     private var dp8: Int = 0
+
+    private val tabFragment = arrayListOf(DepthFragment(), OrderFragment(), AssetsFragment())
+    private var mCurrentFragment: BaseFragment = tabFragment[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +65,22 @@ class TokenInfoActivity : AppCompatActivity() {
         binding.control = control
         EventBus.getDefault().register(this)
         EventBus.getDefault().register(control)
+        initResolution()
+        initIndex()
+        initFragment(name, (uri.getQueryParameter("decimal")!!).toInt())
         val intent = Intent(this, WebSocketService::class.java)
         intent.putExtra("symbol", symbol)
         startService(intent)
-        initResolution()
-        initIndex()
+    }
+
+    private fun initFragment(name: String, decimal: Int) {
+        val bundle = Bundle()
+        bundle.putString("name", name)
+        bundle.putInt("decimal", decimal)
+        tabFragment[0].arguments = bundle
+        supportFragmentManager.beginTransaction()
+            .add(R.id.trade_info_content, mCurrentFragment, HomeFragment::class.java.name)
+            .show(mCurrentFragment).commit()
     }
 
     private fun initToolBar(name: String, icon: String) {
@@ -109,7 +128,7 @@ class TokenInfoActivity : AppCompatActivity() {
             null,
             false
         )
-        tradeIndex.tradeMainHide.isSelected = true
+        tradeIndex.tradeMa.isSelected = true
         tradeIndex.tradeAuxiliaryHide.isSelected = true
         tradeIndex.control = TradeIndexControl()
         index = PopupWindow(
@@ -165,6 +184,16 @@ class TokenInfoActivity : AppCompatActivity() {
             else
                 binding.kLineChartView.hideChildDraw()
         }
+    }
+
+    private fun changeFragment(fragment: BaseFragment) {
+        val begin = supportFragmentManager.beginTransaction().hide(mCurrentFragment)
+        if (!supportFragmentManager.fragments.contains(fragment)) {
+            fragment.arguments = Bundle()
+            begin.add(R.id.trade_info_content, fragment, fragment::class.java.name)
+        }
+        begin.show(fragment).commitAllowingStateLoss()
+        mCurrentFragment = fragment
     }
 
     override fun onDestroy() {

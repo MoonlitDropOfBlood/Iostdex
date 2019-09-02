@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 import java.lang.Exception
 
 open class ListAdapter<T>(private val data: List<T>, @LayoutRes private val itemLayout: Int, private val brId: Int, private val hasStableIds: Boolean = false, private val brIndex: Int = 0) : BaseAdapter() {
-    open override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val viewBinding = run {
             if (convertView == null) {
                 val li = LayoutInflater.from(parent!!.context)

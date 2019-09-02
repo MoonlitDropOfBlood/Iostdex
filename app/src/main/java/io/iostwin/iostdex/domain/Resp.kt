@@ -3,6 +3,9 @@ package io.iostwin.iostdex.domain
 import com.github.fujianlian.klinechart.KLineEntity
 import com.github.fujianlian.klinechart.utils.DateUtil
 import com.google.gson.annotations.SerializedName
+import io.iostwin.iostdex.utils.oneHundred
+import io.iostwin.iostdex.utils.tenThousand
+import io.iostwin.iostdex.utils.thousand
 import java.math.BigDecimal
 import java.util.*
 import kotlin.collections.ArrayList
@@ -124,7 +127,24 @@ data class Order(
     val amount: BigDecimal,
     val balance: BigDecimal,
     val price: BigDecimal
-)
+) {
+    fun getVolume(): String {
+        return if (balance < tenThousand)
+            balance.toPlainString()
+        else {
+            balance.divide(thousand, 2, BigDecimal.ROUND_HALF_DOWN).toPlainString() + "K"
+        }
+    }
+
+    fun progress(isBuy: Boolean, max: BigDecimal): Int {
+        val progress =
+            balance.divide(max, 2, BigDecimal.ROUND_HALF_DOWN).multiply(oneHundred).toInt()
+        return if (isBuy)
+            100 - progress
+        else
+            progress
+    }
+}
 
 data class ChartHistoryResp(
     val c: List<BigDecimal>,

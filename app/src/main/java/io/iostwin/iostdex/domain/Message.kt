@@ -20,7 +20,7 @@ data class OrderFiltrateMessage(
     val endTime: Int? = null
 )
 
-data class OrderMessage(val buy: Int, val data: ArrayList<Order>)
+data class OrderMessage(val buy: Boolean, val data: ArrayList<Order>)
 
 data class HistoryMessage(val data: ArrayList<History>)
 
