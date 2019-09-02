@@ -71,4 +71,7 @@
     <string name="trade_main_graph">主图</string>
     <string name="trade_auxiliary_graph">副图</string>
     <string name="trade_hide">隐藏</string>
+    <string name="trade_depth">深度</string>
+    <string name="trade_Deal">成交</string>
+    <string name="trade_intro">简介</string>
 </resources>

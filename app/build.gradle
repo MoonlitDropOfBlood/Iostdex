@@ -98,4 +98,5 @@ dependencies {
      * 图表
      */
     implementation project(':KLineChartLib')
+    implementation project(':depthmapview')
 }

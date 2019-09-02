@@ -1,0 +1,5 @@
+<resources>
+    <string name="depth_map_view_price">委托价：</string>
+    <string name="depth_map_view_total_vol">累计数量：</string>
+    <string name="depth_map_view_total_amt">累计金额：</string>
+</resources>

@@ -70,4 +70,10 @@
     <string name="trade_main_graph">메인 그래프</string>
     <string name="trade_auxiliary_graph">보조 그래프</string>
     <string name="trade_hide">숨기기</string>
+    <string name="trade_depth">깊이</string>
+    <string name="trade_Deal">거래</string>
+    <string name="trade_intro">소개</string>
+    <string name="depth_map_view_price">가격:</string>
+    <string name="depth_map_view_total_vol">Total Vol:</string>
+    <string name="depth_map_view_total_amt">Total Amt:</string>
 </resources>

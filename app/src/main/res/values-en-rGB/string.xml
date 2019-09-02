@@ -68,4 +68,10 @@
     <string name="trade_main_graph">Main Graph</string>
     <string name="trade_auxiliary_graph">Auxiliary Graph</string>
     <string name="trade_hide">Hide</string>
+    <string name="trade_depth">Depth</string>
+    <string name="trade_Deal">Deal</string>
+    <string name="trade_intro">Intro</string>
+    <string name="depth_map_view_price">Price:</string>
+    <string name="depth_map_view_total_vol">Total Vol:</string>
+    <string name="depth_map_view_total_amt">Total Amt:</string>
 </resources>
