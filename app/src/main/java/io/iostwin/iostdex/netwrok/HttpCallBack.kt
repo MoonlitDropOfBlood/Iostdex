@@ -29,7 +29,7 @@ class HttpCallBack<T>(
 
     override fun onFailure(call: Call<T>, t: Throwable) {
         fail?.invoke(t)
-        if (t is IOException) {
+        if (t is IOException && !call.isCanceled) {
             toast(R.string.app_network_socket_timeout)
         }
         t.printStackTrace()

@@ -63,4 +63,9 @@
     <string name="trade_max">24H High:</string>
     <string name="trade_min">24H Low:</string>
     <string name="trade_volume">24H:</string>
+    <string name="trade_more">More</string>
+    <string name="trade_index">Index</string>
+    <string name="trade_main_graph">Main Graph</string>
+    <string name="trade_auxiliary_graph">Auxiliary Graph</string>
+    <string name="trade_hide">Hide</string>
 </resources>

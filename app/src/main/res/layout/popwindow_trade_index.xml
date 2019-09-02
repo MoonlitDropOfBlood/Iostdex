@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="control"
+            type="io.iostwin.iostdex.module.trade.control.TradeIndexControl" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_trade_menu"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/trade_main_graph"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/text1"
+                android:layout_toEndOf="@+id/text1"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:id="@+id/trade_ma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/text1"
+                android:onClick="@{(v)->control.onClick(v,true,1)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="MA"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/trade_ma"
+                android:onClick="@{(v)->control.onClick(v,true,2)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="BOLL"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:id="@+id/trade_main_hide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{(v)->control.onClick(v,true,0)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/trade_hide"
+                android:textColor="@color/color_trade_index" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/trade_auxiliary_graph"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/text2"
+                android:layout_toEndOf="@+id/text2"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:id="@+id/trade_macd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/text2"
+                android:onClick="@{(v)->control.onClick(v,false,1)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="MACD"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:id="@+id/trade_kdj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/trade_macd"
+                android:onClick="@{(v)->control.onClick(v,false,2)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="KDJ"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:id="@+id/trade_rsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/trade_kdj"
+                android:onClick="@{(v)->control.onClick(v,false,3)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="RSI"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/trade_rsi"
+                android:onClick="@{(v)->control.onClick(v,false,4)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="WR"
+                android:textColor="@color/color_trade_index" />
+
+            <TextView
+                android:id="@+id/trade_auxiliary_hide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{(v)->control.onClick(v,false,0)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/trade_hide"
+                android:textColor="@color/color_trade_index" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

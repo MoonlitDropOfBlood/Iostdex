@@ -66,4 +66,9 @@
     <string name="trade_max">24H最高:</string>
     <string name="trade_min">24H最低:</string>
     <string name="trade_volume">24H量:</string>
+    <string name="trade_more">更多</string>
+    <string name="trade_index">指标</string>
+    <string name="trade_main_graph">主图</string>
+    <string name="trade_auxiliary_graph">副图</string>
+    <string name="trade_hide">隐藏</string>
 </resources>

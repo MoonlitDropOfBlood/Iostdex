@@ -65,4 +65,9 @@
     <string name="trade_max">24H최고가:</string>
     <string name="trade_min">24H최저가:</string>
     <string name="trade_volume">24H거래량:</string>
+    <string name="trade_more">더</string>
+    <string name="trade_index">인덱스</string>
+    <string name="trade_main_graph">메인 그래프</string>
+    <string name="trade_auxiliary_graph">보조 그래프</string>
+    <string name="trade_hide">숨기기</string>
 </resources>

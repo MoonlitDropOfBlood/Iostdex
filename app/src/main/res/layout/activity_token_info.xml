@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module.trade.ui.activites.TokenInfoActivity">
 
     <data>
 
@@ -14,8 +15,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".module.trade.ui.activites.TokenInfoActivity">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -187,15 +187,25 @@
                     </RadioGroup>
 
                     <TextView
+                        android:id="@+id/trade_more"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@drawable/bg_trade_menu"
+                        android:gravity="center"
+                        android:onClick="@{()->control.menu(1)}"
+                        android:text="@{control.more}"
                         android:textColor="@color/color_trade_chart" />
 
                     <TextView
+                        android:id="@+id/trade_index"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@drawable/bg_trade_menu"
+                        android:gravity="center"
+                        android:text="@string/trade_index"
+                        android:onClick="@{()->control.menu(2)}"
                         android:textColor="@color/text_color_level_6" />
                 </LinearLayout>
 

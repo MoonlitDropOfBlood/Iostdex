@@ -20,4 +20,5 @@
 
     <color name="down">#F31818</color>
     <color name="up">#4CAF50</color>
+    <color name="background_trade_menu">#B7000000</color>
 </resources>

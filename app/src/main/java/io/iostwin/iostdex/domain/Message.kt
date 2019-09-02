@@ -34,10 +34,9 @@ data class PriceMessage(
     val supply: BigDecimal
 )
 
-//data class LastPriceMessage(
-//    val priceLastHour: BigDecimal,
-//    val volumeLastHour: BigDecimal
-//)
+data class OnPopWindowMessage(
+    val type: Int
+)
 
 data class TokenInfoMessage(
     val website: String?,
@@ -46,4 +45,6 @@ data class TokenInfoMessage(
     val desc: String?,
     val icon: String
 )
+
+data class TradeIndexMessage(val isMain: Boolean, val index: Int)
 
