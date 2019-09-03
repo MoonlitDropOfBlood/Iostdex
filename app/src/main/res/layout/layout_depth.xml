@@ -95,20 +95,22 @@
             <!--suppress AndroidUnknownAttribute -->
             <io.iostwin.iostdex.widget.ListViewForScrollView
                 android:layout_width="0dp"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:adapter="@{control.buyAdapter}"
-                android:enabled="false"
-                android:focusable="false" />
+                android:divider="@android:color/white"
+                android:dividerHeight="0dp"
+                android:scrollbars="none" />
 
             <!--suppress AndroidUnknownAttribute -->
             <io.iostwin.iostdex.widget.ListViewForScrollView
                 android:layout_width="0dp"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:adapter="@{control.sellAdapter}"
-                android:enabled="false"
-                android:focusable="false" />
+                android:divider="@android:color/white"
+                android:dividerHeight="0dp"
+                android:scrollbars="none" />
 
         </LinearLayout>
     </LinearLayout>

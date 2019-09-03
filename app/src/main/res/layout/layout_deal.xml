@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="control"
+            type="io.iostwin.iostdex.module.trade.control.DealControl" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/depth_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trade_deal_time"
+                android:textColor="@color/text_color_level_6" />
+
+            <TextView
+                android:id="@+id/depth_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@{@string/trade_depth_amt+`(`+control.tradeSymbol+`)`}"
+                android:textColor="@color/text_color_level_6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@{@string/trade_depth_price+`(`+control.mainSymbol+`)`}"
+                android:textColor="@color/text_color_level_6" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/depth_buy"
+                android:layout_marginTop="8dp"
+                android:background="@color/line_color" />
+        </RelativeLayout>
+
+        <!--suppress AndroidUnknownAttribute -->
+        <io.iostwin.iostdex.widget.ListViewForScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adapter="@{control.adapter}"
+            android:divider="@android:color/white"
+            android:dividerHeight="0dp"
+            android:onItemClickListener="@{(parent,view,position,id)->control.onItemClick(parent,position)}"
+            android:scrollbars="none" />
+    </LinearLayout>
+</layout>

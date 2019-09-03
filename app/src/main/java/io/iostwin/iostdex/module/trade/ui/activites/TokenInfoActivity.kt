@@ -11,9 +11,9 @@ import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.R
-import io.iostwin.iostdex.databinding.ActivityTokenInfoBinding
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import com.bumptech.glide.Glide
@@ -21,20 +21,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.github.fujianlian.klinechart.draw.Status
+import com.google.android.material.tabs.TabLayout
 import io.iostwin.iostdex.BuildConfig
-import io.iostwin.iostdex.common.BaseFragment
-import io.iostwin.iostdex.databinding.PopwindowTradeIndexBinding
-import io.iostwin.iostdex.databinding.PopwindowTradeMoreBinding
+import io.iostwin.iostdex.databinding.*
 import io.iostwin.iostdex.domain.OnPopWindowMessage
 import io.iostwin.iostdex.domain.TradeIndexMessage
-import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
-import io.iostwin.iostdex.module.main.ui.fragments.HomeFragment
-import io.iostwin.iostdex.module.main.ui.fragments.OrderFragment
-import io.iostwin.iostdex.module.trade.control.TokenInfoControl
-import io.iostwin.iostdex.module.trade.control.TradeIndexControl
-import io.iostwin.iostdex.module.trade.control.TradeMoreControl
+import io.iostwin.iostdex.module.trade.control.*
 import io.iostwin.iostdex.module.trade.service.WebSocketService
-import io.iostwin.iostdex.module.trade.ui.fragments.DepthFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -47,8 +40,8 @@ class TokenInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTokenInfoBinding
     private var dp8: Int = 0
 
-    private val tabFragment = arrayListOf(DepthFragment(), OrderFragment(), AssetsFragment())
-    private var mCurrentFragment: BaseFragment = tabFragment[0]
+    private val childViews = arrayListOf<View>()
+    private val childControls = arrayListOf<Any>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,20 +60,51 @@ class TokenInfoActivity : AppCompatActivity() {
         EventBus.getDefault().register(control)
         initResolution()
         initIndex()
-        initFragment(name, (uri.getQueryParameter("decimal")!!).toInt())
+        initFragment(name, (uri.getQueryParameter("decimal")!!).toInt(),symbol)
+        binding.tradeTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab) {
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab) {
+            }
+
+            override fun onTabSelected(p0: TabLayout.Tab) {
+                changeFragment(childViews[p0.position])
+            }
+
+        })
         val intent = Intent(this, WebSocketService::class.java)
         intent.putExtra("symbol", symbol)
         startService(intent)
     }
 
-    private fun initFragment(name: String, decimal: Int) {
-        val bundle = Bundle()
-        bundle.putString("name", name)
-        bundle.putInt("decimal", decimal)
-        tabFragment[0].arguments = bundle
-        supportFragmentManager.beginTransaction()
-            .add(R.id.trade_info_content, mCurrentFragment, HomeFragment::class.java.name)
-            .show(mCurrentFragment).commit()
+    private fun initFragment(name: String, decimal: Int, symbol: String) {
+        val depthBinding = DataBindingUtil.inflate<LayoutDepthBinding>(
+            layoutInflater,
+            R.layout.layout_depth,
+            null,
+            false
+        )
+        val depthControl = DepthControl(decimal, name, depthBinding)
+        depthBinding.control = depthControl
+        this.binding.tradeInfoContent.addView(depthBinding.root)
+        EventBus.getDefault().register(depthControl)
+        val dealBinding = DataBindingUtil.inflate<LayoutDealBinding>(
+            layoutInflater,
+            R.layout.layout_deal,
+            null,
+            false
+        )
+        val dealControl = DealControl(name, symbol)
+        dealBinding.control = dealControl
+        dealBinding.root.visibility = View.GONE
+        this.binding.tradeInfoContent.addView(dealBinding.root)
+        EventBus.getDefault().register(dealControl)
+
+        childViews.add(depthBinding.root)
+        childViews.add(dealBinding.root)
+        childControls.add(depthControl)
+        childControls.add(dealControl)
     }
 
     private fun initToolBar(name: String, icon: String) {
@@ -186,20 +210,23 @@ class TokenInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeFragment(fragment: BaseFragment) {
-        val begin = supportFragmentManager.beginTransaction().hide(mCurrentFragment)
-        if (!supportFragmentManager.fragments.contains(fragment)) {
-            fragment.arguments = Bundle()
-            begin.add(R.id.trade_info_content, fragment, fragment::class.java.name)
+    private fun changeFragment(fragment: View) {
+        for (item in childViews) {
+            if (item !== fragment) {
+                item.visibility = View.GONE
+            } else {
+                item.visibility = View.VISIBLE
+            }
         }
-        begin.show(fragment).commitAllowingStateLoss()
-        mCurrentFragment = fragment
     }
 
     override fun onDestroy() {
         super.onDestroy()
         EventBus.getDefault().unregister(this)
         EventBus.getDefault().unregister(control)
+        for (item in childControls) {
+            EventBus.getDefault().unregister(item)
+        }
         stopService(Intent(this, WebSocketService::class.java))
     }
 }

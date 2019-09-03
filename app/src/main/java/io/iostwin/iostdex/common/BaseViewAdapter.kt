@@ -19,29 +19,28 @@ class BaseViewAdapter<T>(
     private val viewHolder: ((viewHolder: ViewHolder) -> Unit)? = null
 ) : RecyclerView.Adapter<BaseViewAdapter.ViewHolder>() {
 
-    private val mOnClickListener: View.OnClickListener
-    private val mOnLongClickListener: View.OnLongClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener { v ->
+    private val mOnClickListener = View.OnClickListener { v ->
+        @Suppress("UNCHECKED_CAST")
+        mItemClickListener?.invoke(v.getTag(R.id.tag_more_key) as T)
+    }
+    private val mOnLongClickListener= View.OnLongClickListener { v ->
+        if (mItemLongClickListener == null)
+            return@OnLongClickListener false
+        else {
             @Suppress("UNCHECKED_CAST")
-            mItemClickListener?.invoke(v.getTag(R.id.tag_more_key) as T)
-        }
-        mOnLongClickListener = View.OnLongClickListener { v ->
-            if (mItemLongClickListener == null)
-                return@OnLongClickListener false
-            else {
-                @Suppress("UNCHECKED_CAST")
-                mItemLongClickListener.invoke(v.getTag(R.id.tag_more_key) as T)
-                return@OnLongClickListener true
-            }
+            mItemLongClickListener.invoke(v.getTag(R.id.tag_more_key) as T)
+            return@OnLongClickListener true
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutRes, parent, false)
+            DataBindingUtil.inflate<ViewDataBinding>(
+                LayoutInflater.from(parent.context),
+                layoutRes,
+                parent,
+                false
+            )
         return ViewHolder(binding.root, viewHolder)
     }
 

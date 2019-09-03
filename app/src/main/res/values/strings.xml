@@ -76,4 +76,13 @@
     <string name="trade_intro">简介</string>
     <string name="trade_depth_amt">数量</string>
     <string name="trade_depth_price">价格</string>
+    <string name="trade_deal_time">时间</string>
+    <string name="trade_details">交易详情</string>
+    <string name="trade_finish_time">成交时间</string>
+    <string name="trade_finish_buyer">买家</string>
+    <string name="trade_finish_account">账户名:</string>
+    <string name="trade_finish_billing">结算数量:</string>
+    <string name="trade_commission_hash">委托Hash:</string>
+    <string name="trade_finish_hash">成交Hash:</string>
+    <string name="trade_finish_seller">卖家</string>
 </resources>

@@ -76,4 +76,13 @@
     <string name="depth_map_view_total_amt">Total Amt:</string>
     <string name="trade_depth_amt">Amt</string>
     <string name="trade_depth_price">Price</string>
+    <string name="trade_deal_time">Time</string>
+    <string name="trade_details">Trading Details</string>
+    <string name="trade_finish_time">Finish Time</string>
+    <string name="trade_finish_buyer">Buyer</string>
+    <string name="trade_finish_account">Account:</string>
+    <string name="trade_finish_billing">Billing Volume:</string>
+    <string name="trade_commission_hash">Commission Hash:</string>
+    <string name="trade_finish_hash">Finish Hash:</string>
+    <string name="trade_finish_seller">Seller</string>
 </resources>

@@ -170,3 +170,24 @@ data class ChartHistoryResp(
         return data
     }
 }
+
+data class TradeDetailResp(
+    val price: BigDecimal,
+    val num: BigDecimal,
+    val tradetime: Int,
+    val direction: Int,
+    val buy: BusinessDetails,
+    val sell: BusinessDetails
+){
+    fun getAmount():String{
+        return price.multiply(num).setScale(8,BigDecimal.ROUND_HALF_DOWN).toPlainString()
+    }
+}
+
+data class BusinessDetails(
+    val user: String,
+    val amount: String,
+    val fee: String,
+    val tradehx: String,
+    val finishhx: String
+)

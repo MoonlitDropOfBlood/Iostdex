@@ -29,4 +29,7 @@ interface ApiService {
             "from"
         ) from: Int, @Query("to") to: Int
     ): Call<ChartHistoryResp>
+
+    @GET("/api/trade/detail/{symbol}/{id}")
+    fun tradeDetail(@Path("symbol") symbol: String, @Path("id") id: Int): Call<TradeDetailResp>
 }

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,7 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.fujianlian.klinechart.utils.DateUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -91,5 +93,16 @@ public class BindingAdapters {
     @BindingAdapter("text_time")
     public static void textTime(TextView view, long time) {
         view.setText(simpleDateFormat.format(new Date(time * 1000L)));
+    }
+
+    @BindingAdapter("progress")
+    public static void setProgress(ProgressBar view, int progress) {
+        view.setProgress(progress, false);
+        view.setSecondaryProgress(progress);
+    }
+
+    @BindingAdapter("android:textTime")
+    public static void textTime(TextView view, int time) {
+        view.setText(DateUtil.longTimeFormat.format(new Date((long) time * 1000L)));
     }
 }

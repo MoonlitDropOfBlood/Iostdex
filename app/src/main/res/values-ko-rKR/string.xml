@@ -78,4 +78,13 @@
     <string name="depth_map_view_total_amt">총 금액:</string>
     <string name="trade_depth_amt">볼륨</string>
     <string name="trade_depth_price">가격</string>
+    <string name="trade_deal_time">시간</string>
+    <string name="trade_details">거래 세부 정보</string>
+    <string name="trade_finish_time">완료 시간</string>
+    <string name="trade_finish_buyer">구매자</string>
+    <string name="trade_finish_account">계정:</string>
+    <string name="trade_finish_billing">결제 볼륨:</string>
+    <string name="trade_commission_hash">위원회 해시:</string>
+    <string name="trade_finish_hash">마침 해시:</string>
+    <string name="trade_finish_seller">판매자</string>
 </resources>

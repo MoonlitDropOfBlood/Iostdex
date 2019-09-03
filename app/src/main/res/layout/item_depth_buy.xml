@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -23,15 +24,16 @@
             android:layout_alignTop="@+id/text1"
             android:layout_alignBottom="@+id/text1"
             android:max="100"
-            android:progress="@{viewModel.progress(true,max)}"
-            android:progressDrawable="@drawable/bg_progressbar_buy" />
+            android:progressDrawable="@drawable/bg_progressbar_buy"
+            app:progress="@{viewModel.progress(true,max)}" />
 
         <TextView
             android:id="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@{viewModel.volume}" />
+            android:text="@{viewModel.volume}"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,6 +41,7 @@
             android:layout_alignParentEnd="true"
             android:padding="8dp"
             android:text="@{viewModel.price.toPlainString()}"
-            android:textColor="@color/up" />
+            android:textColor="@color/up"
+            android:textSize="12sp" />
     </RelativeLayout>
 </layout>

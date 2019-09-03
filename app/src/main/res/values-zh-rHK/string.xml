@@ -76,4 +76,13 @@
     <string name="depth_map_view_total_amt">累計金額：</string>
     <string name="trade_depth_amt">数量</string>
     <string name="trade_depth_price">價格</string>
+    <string name="trade_deal_time">時間</string>
+    <string name="trade_details">交易詳情</string>
+    <string name="trade_finish_time">成交時間</string>
+    <string name="trade_finish_buyer">買家</string>
+    <string name="trade_finish_account">賬戶名:</string>
+    <string name="trade_finish_billing">結算数量:</string>
+    <string name="trade_commission_hash">委託Hash:</string>
+    <string name="trade_finish_hash">成交Hash:</string>
+    <string name="trade_finish_seller">賣家</string>
 </resources>
