@@ -242,7 +242,7 @@
                     android:background="@android:color/white"
                     android:padding="16dp"
                     android:text="@string/tab_my_commission"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
