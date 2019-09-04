@@ -25,6 +25,7 @@ import com.google.android.material.tabs.TabLayout
 import io.iostwin.iostdex.BuildConfig
 import io.iostwin.iostdex.databinding.*
 import io.iostwin.iostdex.domain.OnPopWindowMessage
+import io.iostwin.iostdex.domain.OrderMessage
 import io.iostwin.iostdex.domain.TradeIndexMessage
 import io.iostwin.iostdex.module.trade.control.*
 import io.iostwin.iostdex.module.trade.service.WebSocketService
@@ -53,14 +54,15 @@ class TokenInfoActivity : AppCompatActivity() {
         val symbol = uri.getQueryParameter("symbol")!!
         val icon = uri.getQueryParameter("icon")!!
         val name = uri.getQueryParameter("name")!!
+        val decimal = uri.getQueryParameter("decimal")!!
         initToolBar(name, icon)
-        control = TokenInfoControl(binding, symbol)
+        control = TokenInfoControl(binding, symbol, icon, name, decimal)
         binding.control = control
         EventBus.getDefault().register(this)
         EventBus.getDefault().register(control)
         initResolution()
         initIndex()
-        initFragment(name, (uri.getQueryParameter("decimal")!!).toInt(),symbol)
+        initFragment(name, decimal.toInt(), symbol)
         binding.tradeTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab) {
             }
@@ -101,10 +103,24 @@ class TokenInfoActivity : AppCompatActivity() {
         this.binding.tradeInfoContent.addView(dealBinding.root)
         EventBus.getDefault().register(dealControl)
 
+        val introBinding = DataBindingUtil.inflate<LayoutIntroBinding>(
+            layoutInflater,
+            R.layout.layout_intro,
+            null,
+            false
+        )
+        val introControl = IntroControl()
+        introBinding.control = introControl
+        introBinding.root.visibility = View.GONE
+        this.binding.tradeInfoContent.addView(introBinding.root)
+        EventBus.getDefault().register(introControl)
+
         childViews.add(depthBinding.root)
         childViews.add(dealBinding.root)
+        childViews.add(introBinding.root)
         childControls.add(depthControl)
         childControls.add(dealControl)
+        childControls.add(introControl)
     }
 
     private fun initToolBar(name: String, icon: String) {
@@ -228,5 +244,14 @@ class TokenInfoActivity : AppCompatActivity() {
             EventBus.getDefault().unregister(item)
         }
         stopService(Intent(this, WebSocketService::class.java))
+    }
+
+    override fun startActivity(intent: Intent) {
+        super.startActivity(intent)
+        if (intent.data!!.path == "/tradeToken") {
+            val control = childControls[0] as DepthControl
+            EventBus.getDefault().postSticky(OrderMessage(true, control.buyOrder))
+            EventBus.getDefault().postSticky(OrderMessage(false, control.sellOrder))
+        }
     }
 }

@@ -9,6 +9,7 @@ import io.iostwin.iostdex.domain.Order
 import io.iostwin.iostdex.domain.OrderMessage
 import io.iostwin.iostdex.module.trade.ui.adapters.OrderAdapter
 import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DepthControl(
     private val decimal: Int,
@@ -16,12 +17,12 @@ class DepthControl(
     val binding: LayoutDepthBinding
 ) {
     val mainSymbol = "IOST"
-    private val buyOrder = arrayListOf<Order>()
-    private val sellOrder = arrayListOf<Order>()
+    val buyOrder = arrayListOf<Order>()
+    val sellOrder = arrayListOf<Order>()
     val buyAdapter = OrderAdapter(buyOrder, R.layout.item_depth_buy, BR.viewModel)
     val sellAdapter = OrderAdapter(sellOrder, R.layout.item_depth_sell, BR.viewModel)
-    private val handler = Handler()
-    @Subscribe
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onOrderMessage(message: OrderMessage) {
         if (message.buy) {
             buyOrder.clear()
@@ -42,10 +43,8 @@ class DepthControl(
             buyAdapter.max = maxOf(item.balance, buyAdapter.max)
             sellAdapter.max = maxOf(item.balance, sellAdapter.max)
         }
-        handler.post {
-            binding.depthMapView.setData(buy, sell, mainSymbol, tradeSymbol, 8, decimal)
-            buyAdapter.notifyDataSetChanged()
-            sellAdapter.notifyDataSetChanged()
-        }
+        binding.depthMapView.setData(buy, sell, mainSymbol, tradeSymbol, 8, decimal)
+        buyAdapter.notifyDataSetChanged()
+        sellAdapter.notifyDataSetChanged()
     }
 }

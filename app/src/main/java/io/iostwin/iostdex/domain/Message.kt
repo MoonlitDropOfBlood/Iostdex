@@ -39,6 +39,7 @@ data class OnPopWindowMessage(
 )
 
 data class TokenInfoMessage(
+    val name: String?,
     val website: String?,
     val maxSupply: BigDecimal,
     val symbol: String,

@@ -52,9 +52,10 @@ data class Assets(
 data class TokenAssets(
     val icon: String,
     val name: String,
-    val symbol:String,
+    val symbol: String,
     val balance: BigDecimal,
     val frozenBalance: BigDecimal,
     val price: BigDecimal,
-    val assess: BigDecimal
+    val assess: BigDecimal,
+    val digit: Int
 )

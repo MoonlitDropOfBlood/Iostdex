@@ -67,6 +67,7 @@ class WebSocketService : Service() {
                     EventBus.getDefault()
                         .post(
                             TokenInfoMessage(
+                                name,
                                 website,
                                 maxsupply,
                                 symbol,

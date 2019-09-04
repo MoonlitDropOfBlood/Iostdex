@@ -16,6 +16,7 @@ import io.iostwin.iostdex.netwrok.ApiService
 import io.iostwin.iostdex.netwrok.HttpCallBack
 import io.iostwin.iostdex.netwrok.NetConfig
 import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DealControl(val tradeSymbol: String, val symbol: String) {
     val mainSymbol = "IOST"
@@ -25,7 +26,7 @@ class DealControl(val tradeSymbol: String, val symbol: String) {
     private var dialog: AlertDialog? = null
     private lateinit var dialogControl: DealDialogControl
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onHistoryMessage(message: HistoryMessage) {
         data.addAll(0, message.data)
         handler.post {

@@ -57,7 +57,7 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
                 ).appendQueryParameter("symbol", tokenAssets.symbol).appendQueryParameter(
                     "name",
                     tokenAssets.name
-                ).build()
+                ).appendQueryParameter("decimal", tokenAssets.digit.toString()).build()
             )
         )
     }
@@ -93,7 +93,7 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
         tokens.clear()
         tokens.addAll(response)
         binding.refreshLayout.finishRefresh()
-        val task = BalanceTask(this::taskResult)
+        val task = BalanceTask(this::taskResult, tokens)
         task.execute(*tokens.toTypedArray())
     }
 
@@ -114,7 +114,7 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
     }
 
     class BalanceTask(
-        private val finish: (result: Assets) -> Unit
+        private val finish: (result: Assets) -> Unit, private val tokens: ArrayList<TokenSymbolResp>
     ) : AsyncTask<TokenSymbolResp, Unit, Assets>() {
         override fun doInBackground(vararg p0: TokenSymbolResp): Assets {
             val assets = Assets(BigDecimal.ZERO, arrayListOf())
@@ -135,10 +135,12 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
                         resp.balance,
                         frozenBalanceIOST,
                         BigDecimal.ONE,
-                        resp.balance.add(frozenBalanceIOST)
+                        resp.balance.add(frozenBalanceIOST),
+                        8
                     )
                 )
-                p0.forEach {
+                for (i in p0.indices) {
+                    val it = p0[i]
                     val result =
                         service.getTokenBalance(User.account!!, it.symbol).execute().body()!!
                     val frozenBalance = BigDecimal.ZERO
@@ -156,7 +158,8 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
                         TokenAssets(
                             it.icon, it.name, it.symbol, result.balance, frozenBalance,
                             price,
-                            assetsValue
+                            assetsValue,
+                            tokens[i].digit
                         )
                     )
                 }

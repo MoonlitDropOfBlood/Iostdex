@@ -272,6 +272,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:onClick="@{v -> control.onClick(v,1)}"
                 android:text="@string/order_buy"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
@@ -285,6 +286,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:onClick="@{v -> control.onClick(v,0)}"
                 android:text="@string/order_sell"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />

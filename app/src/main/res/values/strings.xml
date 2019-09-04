@@ -85,4 +85,9 @@
     <string name="trade_commission_hash">委托Hash:</string>
     <string name="trade_finish_hash">成交Hash:</string>
     <string name="trade_finish_seller">卖家</string>
+    <string name="trade_intro_information">基本信息</string>
+    <string name="trade_intro_token_code">代币代码</string>
+    <string name="trade_intro_max_supply">最大发行量</string>
+    <string name="trade_intro_available_supply">已发行量</string>
+    <string name="trade_intro_website">官方网站</string>
 </resources>

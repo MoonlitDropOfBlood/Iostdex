@@ -85,4 +85,9 @@
     <string name="trade_commission_hash">Commission Hash:</string>
     <string name="trade_finish_hash">Finish Hash:</string>
     <string name="trade_finish_seller">Seller</string>
+    <string name="trade_intro_information">Basic Information</string>
+    <string name="trade_intro_token_code">Token Code</string>
+    <string name="trade_intro_max_supply">Max Supply</string>
+    <string name="trade_intro_available_supply">Available Supply</string>
+    <string name="trade_intro_website">Website</string>
 </resources>

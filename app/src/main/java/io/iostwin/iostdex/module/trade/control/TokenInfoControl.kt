@@ -1,10 +1,13 @@
 package io.iostwin.iostdex.module.trade.control
 
+import android.net.Uri
 import android.view.View
 import androidx.databinding.ObservableField
 import com.github.fujianlian.klinechart.DataHelper
 import com.github.fujianlian.klinechart.KLineChartAdapter
 import com.github.fujianlian.klinechart.formatter.DateFormatter
+import com.sankuai.waimai.router.Router
+import com.sankuai.waimai.router.core.UriRequest
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.databinding.ActivityTokenInfoBinding
 import io.iostwin.iostdex.domain.ChartHistoryResp
@@ -17,7 +20,13 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.math.BigDecimal
 
-class TokenInfoControl(private val binding: ActivityTokenInfoBinding, private val symbol: String) :
+class TokenInfoControl(
+    private val binding: ActivityTokenInfoBinding,
+    private val symbol: String,
+    private val icon: String,
+    private val name: String,
+    private val decimal: String
+) :
     OnTradeSelectMoreListener {
     val price = ObservableField<BigDecimal>(BigDecimal.ZERO)
     val percent = ObservableField<BigDecimal>(BigDecimal.ZERO)
@@ -145,5 +154,23 @@ class TokenInfoControl(private val binding: ActivityTokenInfoBinding, private va
 
     fun menu(type: Int) {
         EventBus.getDefault().post(OnPopWindowMessage(type))
+    }
+
+    fun onClick(view: View, isBuy: Int) {
+        Router.startUri(
+            UriRequest(
+                view.context,
+                Uri.Builder().path("/tradeToken").appendQueryParameter(
+                    "icon",
+                    icon
+                ).appendQueryParameter("symbol", symbol).appendQueryParameter(
+                    "name",
+                    name
+                ).appendQueryParameter("decimal", decimal).appendQueryParameter(
+                    "isBuy",
+                    isBuy.toString()
+                ).build()
+            )
+        )
     }
 }

@@ -87,4 +87,9 @@
     <string name="trade_commission_hash">위원회 해시:</string>
     <string name="trade_finish_hash">마침 해시:</string>
     <string name="trade_finish_seller">판매자</string>
+    <string name="trade_intro_information">기본 정보</string>
+    <string name="trade_intro_token_code">토큰 코드</string>
+    <string name="trade_intro_max_supply">최대 공급</string>
+    <string name="trade_intro_available_supply">공급</string>
+    <string name="trade_intro_website">사이트</string>
 </resources>
