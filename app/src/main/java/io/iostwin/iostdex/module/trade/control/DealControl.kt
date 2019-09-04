@@ -22,16 +22,13 @@ class DealControl(val tradeSymbol: String, val symbol: String) {
     val mainSymbol = "IOST"
     val data = arrayListOf<History>()
     val adapter = ListAdapter(data, R.layout.item_deal, BR.viewModel)
-    private val handler = Handler()
     private var dialog: AlertDialog? = null
     private lateinit var dialogControl: DealDialogControl
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onHistoryMessage(message: HistoryMessage) {
         data.addAll(0, message.data)
-        handler.post {
-            adapter.notifyDataSetChanged()
-        }
+        adapter.notifyDataSetChanged()
     }
 
     fun onItemClick(parent: AdapterView<*>, position: Int) {

@@ -92,4 +92,12 @@
     <string name="trade_intro_max_supply">최대 공급</string>
     <string name="trade_intro_available_supply">공급</string>
     <string name="trade_intro_website">사이트</string>
+    <string-array name="trade_array">
+        <item>한정 가격</item>
+        <item>시장 가격</item>
+    </string-array>
+    <string name="trade_text">현재 최고의 가격으로 거래</string>
+    <string name="trade_text1">사용할:</string>
+    <string name="trade_text2">불충분 한 복용량</string>
+    <string name="login">로그인</string>
 </resources>

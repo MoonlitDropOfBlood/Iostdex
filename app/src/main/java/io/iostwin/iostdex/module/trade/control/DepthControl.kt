@@ -1,6 +1,5 @@
 package io.iostwin.iostdex.module.trade.control
 
-import android.os.Handler
 import androidx.databinding.library.baseAdapters.BR
 import com.github.lilei.depthmapview.DepthBuySellData
 import io.iostwin.iostdex.R

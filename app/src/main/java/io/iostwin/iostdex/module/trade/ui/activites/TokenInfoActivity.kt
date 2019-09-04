@@ -24,13 +24,12 @@ import com.github.fujianlian.klinechart.draw.Status
 import com.google.android.material.tabs.TabLayout
 import io.iostwin.iostdex.BuildConfig
 import io.iostwin.iostdex.databinding.*
-import io.iostwin.iostdex.domain.OnPopWindowMessage
-import io.iostwin.iostdex.domain.OrderMessage
-import io.iostwin.iostdex.domain.TradeIndexMessage
+import io.iostwin.iostdex.domain.*
 import io.iostwin.iostdex.module.trade.control.*
 import io.iostwin.iostdex.module.trade.service.WebSocketService
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.math.BigDecimal
 
 @RouterUri(path = ["/tokenInfo"])
 class TokenInfoActivity : AppCompatActivity() {
@@ -246,12 +245,18 @@ class TokenInfoActivity : AppCompatActivity() {
         stopService(Intent(this, WebSocketService::class.java))
     }
 
-    override fun startActivity(intent: Intent) {
-        super.startActivity(intent)
+    override fun startActivityForResult(intent: Intent, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
         if (intent.data!!.path == "/tradeToken") {
             val control = childControls[0] as DepthControl
-            EventBus.getDefault().postSticky(OrderMessage(true, control.buyOrder))
-            EventBus.getDefault().postSticky(OrderMessage(false, control.sellOrder))
+            EventBus.getDefault().postSticky(
+                TradeMessage(
+                    OrderMessage(true, control.buyOrder),
+                    OrderMessage(false, control.sellOrder),
+                    this.control.price.get() ?: BigDecimal.ZERO,
+                    this.control.percent.get() ?: BigDecimal.ZERO
+                )
+            )
         }
     }
 }

@@ -90,4 +90,12 @@
     <string name="trade_intro_max_supply">最大發行量</string>
     <string name="trade_intro_available_supply">已發行量</string>
     <string name="trade_intro_website">官方網站</string>
+    <string-array name="trade_array">
+        <item>限價</item>
+        <item>市價</item>
+    </string-array>
+    <string name="trade_text">以當前最優價格交易</string>
+    <string name="trade_text1">可用:</string>
+    <string name="trade_text2">可用量不足</string>
+    <string name="login">登錄</string>
 </resources>

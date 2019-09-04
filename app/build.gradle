@@ -99,4 +99,8 @@ dependencies {
      */
     implementation project(':KLineChartLib')
     implementation project(':depthmapview')
+    /**
+     * 刻度进度
+     */
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
 }

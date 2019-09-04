@@ -263,28 +263,24 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_home_percent_up"
-                android:clickable="true"
-                android:focusable="true"
                 android:gravity="center"
                 android:onClick="@{v -> control.onClick(v,1)}"
                 android:text="@string/order_buy"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
-            <TextView
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_home_percent_down"
-                android:clickable="true"
-                android:focusable="true"
                 android:gravity="center"
                 android:onClick="@{v -> control.onClick(v,0)}"
                 android:text="@string/order_sell"

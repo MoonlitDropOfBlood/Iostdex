@@ -24,6 +24,8 @@ data class OrderMessage(val buy: Boolean, val data: ArrayList<Order>)
 
 data class HistoryMessage(val data: ArrayList<History>)
 
+data class TradeMessage(val buy: OrderMessage, val sell: OrderMessage, val price: BigDecimal,val percent:BigDecimal)
+
 data class PriceMessage(
     val amount24H: BigDecimal,
     val maxPrice24H: BigDecimal,

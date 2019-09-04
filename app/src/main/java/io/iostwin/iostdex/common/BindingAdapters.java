@@ -11,11 +11,16 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
+import androidx.databinding.InverseBindingListener;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.fujianlian.klinechart.utils.DateUtil;
+import com.warkiz.widget.IndicatorSeekBar;
+import com.warkiz.widget.OnSeekChangeListener;
+import com.warkiz.widget.SeekParams;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -104,5 +109,36 @@ public class BindingAdapters {
     @BindingAdapter("android:textTime")
     public static void textTime(TextView view, int time) {
         view.setText(DateUtil.longTimeFormat.format(new Date((long) time * 1000L)));
+    }
+
+    @BindingAdapter("progress")
+    public static void progressSeekBar(IndicatorSeekBar view, int progress) {
+        if (progress != view.getProgress())
+            view.setProgress(progress);
+    }
+
+    @InverseBindingAdapter(attribute = "progress", event = "progressAttrChanged")
+    public static int getProgress(IndicatorSeekBar view) {
+        return view.getProgress();
+    }
+
+    @BindingAdapter(value = "progressAttrChanged")
+    public static void setChangeListener(IndicatorSeekBar view, InverseBindingListener listener) {
+        view.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+                listener.onChange();
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+        });
     }
 }

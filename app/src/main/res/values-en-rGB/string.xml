@@ -90,4 +90,12 @@
     <string name="trade_intro_max_supply">Max Supply</string>
     <string name="trade_intro_available_supply">Available Supply</string>
     <string name="trade_intro_website">Website</string>
+    <string-array name="trade_array">
+        <item>Limited Price</item>
+        <item>Market Price</item>
+    </string-array>
+    <string name="trade_text">Trade at the current best price</string>
+    <string name="trade_text1">Usable:</string>
+    <string name="trade_text2">Insufficient dosage</string>
+    <string name="login">Login</string>
 </resources>

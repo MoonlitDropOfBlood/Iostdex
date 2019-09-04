@@ -6,6 +6,10 @@
 
     <data>
 
+        <import type="java.math.BigDecimal" />
+
+        <import type="io.iostwin.iostdex.utils.Utils" />
+
         <variable
             name="control"
             type="io.iostwin.iostdex.module.trade.control.TradeControl" />
@@ -110,6 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:baselineAligned="false"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -122,11 +127,14 @@
                         android:layout_weight="3"
                         android:orientation="vertical">
 
-                        <TextView
+                        <!--suppress AndroidUnknownAttribute -->
+                        <Spinner
+                            android:id="@+id/spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_12dp"
-                            android:drawablePadding="12sp" />
+                            android:dropDownWidth="30dp"
+                            android:entries="@array/trade_array"
+                            android:onItemSelected="@{(parent,view,position,id)->control.itemSelect(position)}" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -139,7 +147,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bg_trade_edit_text"
-                                android:enabled="@{!control.isLimit}"
+                                android:enabled="@{control.isLimit}"
                                 android:hint="@string/trade_depth_price"
                                 android:importantForAutofill="no"
                                 android:inputType="numberDecimal"
@@ -157,7 +165,7 @@
                                 <View
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="@color/login_text_color" />
+                                    android:background="@color/line_color" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -186,13 +194,14 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:enabled="false"
-                                android:text=""
                                 android:layout_alignTop="@+id/trade_price"
                                 android:layout_alignBottom="@+id/trade_price"
                                 android:background="@drawable/bg_trade_edit_text"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:text="@string/trade_text"
                                 android:textColor="@color/text_color_level_6"
-                                android:visibility="@{!control.isLimit}"/>
+                                android:visibility="@{!control.isLimit}" />
                         </RelativeLayout>
 
                         <FrameLayout
@@ -204,6 +213,8 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bg_trade_edit_text"
                                 android:hint="@string/trade_depth_amt"
+                                android:importantForAutofill="no"
+                                android:inputType="numberDecimal"
                                 android:padding="8dp"
                                 android:text="@={control.num}" />
 
@@ -220,8 +231,66 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            android:text="@{`≈`+ Utils.calculateAmount(control.price,control.num)+ control.mainSymbol}" />
 
+                        <com.warkiz.widget.IndicatorSeekBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:isb_max="100"
+                            app:isb_min="0"
+                            app:isb_only_thumb_draggable="true"
+                            app:isb_seek_smoothly="true"
+                            app:isb_show_indicator="none"
+                            app:isb_show_tick_marks_type="oval"
+                            app:isb_thumb_drawable="@drawable/ic_seek_bar_thumb"
+                            app:isb_thumb_size="20dp"
+                            app:isb_tick_marks_color="@color/color_seek_bar"
+                            app:isb_tick_marks_size="14dp"
+                            app:isb_ticks_count="5"
+                            app:isb_track_background_size="2dp"
+                            app:isb_track_progress_color="@color/colorPrimary"
+                            app:isb_track_progress_size="4dp"
+                            app:progress="@={control.seekBar}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/trade_text1"
+                                android:textColor="@color/text_color_level_6"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{control.isBuy?control.mainBalance.toPlainString()+ control.mainSymbol:control.tradeBalance+control.tradeSymbolName}"
+                                android:textColor="@color/text_color_level_6"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="@{control.seekBar+`%`}"
+                                android:textColor="@color/text_color_level_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:layout_marginTop="24dp"
+                            android:background="@{control.isBuy?@drawable/bg_home_percent_up:@drawable/bg_home_percent_down}"
+                            android:onClick="@{control::trade}"
+                            android:text="@{!control.isLogin ? @string/login : control.isBuy ? @string/order_buy + control.tradeSymbolName : @string/order_sell + control.tradeSymbolName}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -230,6 +299,54 @@
                         android:layout_marginStart="16dp"
                         android:layout_weight="2"
                         android:orientation="vertical">
+
+                        <!--suppress AndroidUnknownAttribute -->
+                        <ListView
+                            android:id="@+id/list_view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:adapter="@{control.sellAdapter}"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="0dp"
+                            android:nestedScrollingEnabled="true"
+                            android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
+                            android:stackFromBottom="true"
+                            tools:ignore="NestedWeights" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/line_color" />
+
+                        <!--suppress AndroidUnknownAttribute -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            android:text="@{control.tradePrice.toPlainString()}"
+                            android:textColor="@{control.percent.compareTo(BigDecimal.ZERO) == 0 ? @color/text_color_level_1 : control.percent.compareTo(BigDecimal.ZERO) == 1 ? @color/up:@color/down}"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/line_color" />
+
+                        <!--suppress AndroidUnknownAttribute -->
+                        <ListView
+                            android:id="@+id/list_view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:adapter="@{control.buyAdapter}"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="0dp"
+                            android:nestedScrollingEnabled="true"
+                            android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}" />
+
 
                     </LinearLayout>
 

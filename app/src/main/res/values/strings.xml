@@ -18,7 +18,7 @@
     <string name="asset_text">估值:</string>
     <string name="asset_balance">余额:</string>
     <string name="asset_frozen">冻结:</string>
-    <string name="logout" translatable="false">logout</string>
+    <string name="logout" translatable="false">Logout</string>
     <string name="assets_all">所有币种</string>
     <string name="assets_no_zero">非零资产</string>
 
@@ -90,4 +90,12 @@
     <string name="trade_intro_max_supply">最大发行量</string>
     <string name="trade_intro_available_supply">已发行量</string>
     <string name="trade_intro_website">官方网站</string>
+    <string-array name="trade_array">
+        <item>限价</item>
+        <item>市价</item>
+    </string-array>
+    <string name="trade_text">以当前最优价格交易</string>
+    <string name="trade_text1">可用:</string>
+    <string name="trade_text2">可用量不足</string>
+    <string name="login">登录</string>
 </resources>

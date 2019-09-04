@@ -1,39 +1,15 @@
 package io.iostwin.iostdex.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.Toast;
+
 import androidx.annotation.StringRes;
 
+import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 public class Utils {
-    // 两次点击按钮之间的点击间隔不能少于1000毫秒
-    private static final int MIN_CLICK_DELAY_TIME = 1500;
-    private static long lastClickTime;
-
-    public static boolean isFastClick() {
-        boolean flag = false;
-        long curClickTime = System.currentTimeMillis();
-        if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
-            flag = true;
-        }
-        lastClickTime = curClickTime;
-        return flag;
-    }
-
-    public static Activity getActivity(View view) {
-        Context context = view.getContext();
-        while (context instanceof ContextWrapper) {
-            if (context instanceof Activity) {
-                return (Activity) context;
-            }
-            context = ((ContextWrapper) context).getBaseContext();
-        }
-        return (Activity) view.getRootView().getContext();
-    }
 
     /**
      * 正则验证数字
@@ -54,4 +30,13 @@ public class Utils {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
     }
 
+    public static String calculateAmount(String priceStr, String numStr) {
+        if (TextUtils.isEmpty(priceStr))
+            priceStr = "0";
+        if (TextUtils.isEmpty(numStr))
+            numStr = "0";
+        BigDecimal price = new BigDecimal(priceStr);
+        BigDecimal num = new BigDecimal(numStr);
+        return price.multiply(num).setScale(8, BigDecimal.ROUND_HALF_DOWN).toPlainString();
+    }
 }
