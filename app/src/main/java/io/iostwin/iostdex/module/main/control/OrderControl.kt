@@ -64,7 +64,7 @@ class OrderControl(private val binding: FragmentOrderBinding) {
 
     fun ok() {
         binding.drawerLayout.closeDrawer(GravityCompat.END)
-        val symbol = (binding.orderPair.selectedItem as TokenSymbolResp).symbol
+        val symbol = binding.orderPair.selectedItem as TokenSymbolResp
         if (tab.get()) {
             var startTime: Int? = null
             var endTime: Int? = null
@@ -80,7 +80,8 @@ class OrderControl(private val binding: FragmentOrderBinding) {
 
             EventBus.getDefault().post(
                 OrderFiltrateMessage(
-                    symbol,
+                    symbol.name,
+                    symbol.symbol,
                     when (binding.orderDirection.checkedRadioButtonId) {
                         R.id.order_buy -> 1
                         R.id.order_sell -> 0
@@ -97,7 +98,12 @@ class OrderControl(private val binding: FragmentOrderBinding) {
                 )
             )
         } else {
-            EventBus.getDefault().post(OrderFiltrateMessage(symbol))
+            EventBus.getDefault().post(
+                OrderFiltrateMessage(
+                    symbol.name,
+                    symbol.symbol
+                )
+            )
         }
         binding.refreshLayout.autoRefresh()
     }

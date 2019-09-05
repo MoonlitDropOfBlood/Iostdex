@@ -1,5 +1,6 @@
 package io.iostwin.iostdex.common
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,21 +15,21 @@ class BaseViewAdapter<T>(
     @LayoutRes private val layoutRes: Int,
     private val brId: Int,
     private val brIndex: Int = 0,
-    private val mItemClickListener: ((item: T) -> Unit)? = null,
-    private val mItemLongClickListener: ((item: T) -> Unit)? = null,
+    private val mItemClickListener: ((context:Context,item: T) -> Unit)? = null,
+    private val mItemLongClickListener: ((context:Context,item: T) -> Unit)? = null,
     private val viewHolder: ((viewHolder: ViewHolder) -> Unit)? = null
 ) : RecyclerView.Adapter<BaseViewAdapter.ViewHolder>() {
 
     private val mOnClickListener = View.OnClickListener { v ->
         @Suppress("UNCHECKED_CAST")
-        mItemClickListener?.invoke(v.getTag(R.id.tag_more_key) as T)
+        mItemClickListener?.invoke(v.context,v.getTag(R.id.tag_more_key) as T)
     }
     private val mOnLongClickListener= View.OnLongClickListener { v ->
         if (mItemLongClickListener == null)
             return@OnLongClickListener false
         else {
             @Suppress("UNCHECKED_CAST")
-            mItemLongClickListener.invoke(v.getTag(R.id.tag_more_key) as T)
+            mItemLongClickListener.invoke(v.context,v.getTag(R.id.tag_more_key) as T)
             return@OnLongClickListener true
         }
     }

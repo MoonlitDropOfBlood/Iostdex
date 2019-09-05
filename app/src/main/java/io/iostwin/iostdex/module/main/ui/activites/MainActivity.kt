@@ -1,25 +1,29 @@
 package io.iostwin.iostdex.module.main.ui.activites
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import io.iostwin.iostdex.R
 import io.iostwin.iostdex.common.BaseFragment
 import io.iostwin.iostdex.databinding.ActivityMainBinding
 import io.iostwin.iostdex.module.main.ui.fragments.HomeFragment
 import com.sankuai.waimai.router.annotation.RouterUri
+import io.iostwin.iostdex.common.BaseActivity
 import io.iostwin.iostdex.domain.LoginMessage
 import io.iostwin.iostdex.domain.LogoutMessage
 import io.iostwin.iostdex.domain.User
 import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
 import io.iostwin.iostdex.module.main.ui.fragments.LoginFragment
 import io.iostwin.iostdex.module.main.ui.fragments.OrderFragment
+import io.iostwin.iostdex.utils.Constants
+import io.iostwin.iostdex.utils.MultiLanguageUtils
+import io.iostwin.iostdex.utils.SPUtils
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 @RouterUri(path = ["/"])
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val loginFragment = LoginFragment()
     private val tabFragment = arrayListOf(HomeFragment(), OrderFragment(), AssetsFragment())
     private var mCurrentFragment: BaseFragment = tabFragment[0]
@@ -55,6 +59,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             false
+        }
+        val language = SPUtils.get(this, Constants.SP_LANGUAGE, "")
+        if (language == "") {
+            AlertDialog.Builder(this).setMessage(R.string.cn_warr)
+                .setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }.show()
         }
     }
 

@@ -98,4 +98,10 @@
     <string name="trade_text1">可用:</string>
     <string name="trade_text2">可用量不足</string>
     <string name="login">登錄</string>
+    <string name="trade_error_1">請輸入價格與數量</string>
+    <string name="trade_error_2">交易總額不能低於 1 IOST</string>
+    <string name="trade_success">操作成功</string>
+    <string name="trade_error_3">操作失敗</string>
+    <string name="trade_text3">已經完成交易，無法操作</string>
+    <string name="trade_text4">確認是否撤單</string>
 </resources>

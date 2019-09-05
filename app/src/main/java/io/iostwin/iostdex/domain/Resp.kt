@@ -178,9 +178,9 @@ data class TradeDetailResp(
     val direction: Int,
     val buy: BusinessDetails,
     val sell: BusinessDetails
-){
-    fun getAmount():String{
-        return price.multiply(num).setScale(8,BigDecimal.ROUND_HALF_DOWN).toPlainString()
+) {
+    fun getAmount(): String {
+        return price.multiply(num).setScale(8, BigDecimal.ROUND_HALF_DOWN).toPlainString()
     }
 }
 
@@ -190,4 +190,36 @@ data class BusinessDetails(
     val fee: String,
     val tradehx: String,
     val finishhx: String
+)
+
+data class ChainInfo(
+    val chain_id: Int,
+    val head_block: String,
+    val head_block_hash: String,
+    val head_block_time: Long,
+    val lib_block: String,
+    val lib_block_hash: String,
+    val lib_block_time: Long,
+    val lib_witness_list: List<String>,
+    val net_name: String,
+    val pending_witness_list: List<String>,
+    val protocol_version: String,
+    val witness_list: List<String>
+)
+
+data class BatchContractStorageResp(
+    val block_hash: String,
+    val block_number: String,
+    val datas: List<String>
+)
+
+data class BatchContractStorageReq(
+    val by_longest_chain: Boolean,
+    val id: String,
+    val key_fields: List<KeyField>
+)
+
+data class KeyField(
+    val `field`: String,
+    val key: String
 )

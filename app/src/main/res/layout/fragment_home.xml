@@ -28,6 +28,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/colorPrimary"

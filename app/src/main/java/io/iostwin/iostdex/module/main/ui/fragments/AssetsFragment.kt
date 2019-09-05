@@ -12,6 +12,10 @@ import io.iostwin.iostdex.domain.User
 import io.iostwin.iostdex.module.main.control.AssetsControl
 import org.greenrobot.eventbus.EventBus
 import java.util.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.annimon.stream.operator.IntArray
+
+
 
 class AssetsFragment : BaseFragment() {
     private lateinit var control: AssetsControl
@@ -27,6 +31,7 @@ class AssetsFragment : BaseFragment() {
         binding.user = User
         binding.listView.layoutManager =
             LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL, false)
+        binding.listView.addItemDecoration(DividerItemDecoration(binding.listView.context, DividerItemDecoration.VERTICAL))
         binding.toolbar.inflateMenu(R.menu.assets_nav_menu)
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {

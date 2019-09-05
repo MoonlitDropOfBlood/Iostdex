@@ -59,3 +59,38 @@ data class TokenAssets(
     val assess: BigDecimal,
     val digit: Int
 )
+
+data class TPPaylod(
+    val account: String,
+    val tx: Tx,
+    val txABI: List<Any>,
+    val domain: String = "www.iostdex.io",
+    val network: String = "MAINNET"
+)
+
+data class Tx(
+    val actions: List<Action>,
+    val amount_limit: List<AmountLimit>,
+    val time: Long,
+    val expiration: Long,
+    val chain_id: Int = 1024,
+    val delay: Int = 0,
+    val gasLimit: Int = 100000,
+    val gasRatio: Int = 1,
+    val publisher: String = "",
+    val publisher_sigs: List<Any> = listOf(),
+    val reserved: Any? = null,
+    val signatures: List<Any> = listOf(),
+    val signers: List<Any> = listOf()
+)
+
+data class Action(
+    val actionName: String,
+    val contract: String,
+    val `data`: String
+)
+
+data class AmountLimit(
+    val token: String,
+    val value: String
+)

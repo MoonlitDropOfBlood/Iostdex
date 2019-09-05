@@ -1,7 +1,6 @@
 package io.iostwin.iostdex.module.web
 
 import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.webkit.WebChromeClient
@@ -9,9 +8,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.R
+import io.iostwin.iostdex.common.BaseActivity
 
 @RouterUri(path = ["/web"])
-class WebActivity : AppCompatActivity() {
+class WebActivity : BaseActivity() {
 
     private lateinit var toolbar: Toolbar
 

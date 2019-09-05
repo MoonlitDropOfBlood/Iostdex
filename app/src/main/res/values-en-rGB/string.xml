@@ -98,4 +98,10 @@
     <string name="trade_text1">Usable:</string>
     <string name="trade_text2">Insufficient dosage</string>
     <string name="login">Login</string>
+    <string name="trade_error_1">Please enter price and quantity</string>
+    <string name="trade_error_2">Total transaction amount cannot be lower than 1 IOST</string>
+    <string name="trade_error_3">Fail</string>
+    <string name="trade_success">Success</string>
+    <string name="trade_text3">The transaction has been completed and cannot be operated</string>
+    <string name="trade_text4">Confirm whether to withdraw the order</string>
 </resources>

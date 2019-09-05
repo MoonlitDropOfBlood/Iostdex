@@ -5,9 +5,9 @@ package io.iostwin.iostdex.module.trade.ui.activites
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
@@ -15,12 +15,13 @@ import com.bumptech.glide.request.transition.Transition
 import com.sankuai.waimai.router.annotation.RouterUri
 import io.iostwin.iostdex.BuildConfig
 import io.iostwin.iostdex.R
+import io.iostwin.iostdex.common.BaseActivity
 import io.iostwin.iostdex.databinding.ActivityTradeBinding
 import io.iostwin.iostdex.module.trade.control.TradeControl
 import org.greenrobot.eventbus.EventBus
 
 @RouterUri(path = ["/tradeToken"])
-class TradeActivity : AppCompatActivity() {
+class TradeActivity : BaseActivity() {
 
     private lateinit var control: TradeControl
 
@@ -36,7 +37,13 @@ class TradeActivity : AppCompatActivity() {
         val decimal = uri.getQueryParameter("decimal")!!.toInt()
         val isBuy = uri.getQueryParameter("isBuy")!!.toInt()
         initToolBar(name, icon, binding)
-        control = TradeControl(isBuy, name, symbol, decimal)
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        control = TradeControl(this, isBuy, name, symbol, decimal)
         binding.control = control
         EventBus.getDefault().register(control)
     }

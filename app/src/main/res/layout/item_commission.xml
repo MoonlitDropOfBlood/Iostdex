@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="java.math.BigDecimal"/>
+
         <variable
             name="viewModel"
             type="io.iostwin.iostdex.domain.RecordOrderResp" />
@@ -83,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.finishAmount.toPlainString()}" />
+                    android:text="@{viewModel.finishNum.compareTo(BigDecimal.ZERO) == 0 ? `--` : viewModel.finishAmount.toPlainString()}" />
 
             </LinearLayout>
 
@@ -116,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.finishAmount.divide(viewModel.finishNum,8,4).toPlainString()}" />
+                    android:text="@{viewModel.finishNum.compareTo(BigDecimal.ZERO) == 0 ? `--` : viewModel.finishAmount.divide(viewModel.finishNum,8,4).toPlainString()}" />
             </LinearLayout>
 
             <LinearLayout
@@ -149,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.finishNum.toPlainString()}" />
+                    android:text="@{viewModel.finishNum.compareTo(BigDecimal.ZERO) == 0 ? `--` : viewModel.finishNum.toPlainString()}" />
             </LinearLayout>
 
         </LinearLayout>

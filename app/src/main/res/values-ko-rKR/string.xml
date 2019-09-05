@@ -100,4 +100,10 @@
     <string name="trade_text1">사용할:</string>
     <string name="trade_text2">불충분 한 복용량</string>
     <string name="login">로그인</string>
+    <string name="trade_error_1">가격 및 볼륨을 입력하십시오</string>
+    <string name="trade_error_2">총 거래 금액은 1 IOST 보다 낮을 수 없습니다</string>
+    <string name="trade_error_3">실패</string>
+    <string name="trade_success">성공</string>
+    <string name="trade_text3">트랜잭션이 완료되었으며 조작할 수 없습니다</string>
+    <string name="trade_text4">주문 철회 여부 확인</string>
 </resources>

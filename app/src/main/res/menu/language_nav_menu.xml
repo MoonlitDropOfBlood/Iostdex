@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/zh_cn"
+            android:title="@string/language_zh_cn" />
+        <item
+            android:id="@+id/hk_cn"
+            android:title="@string/language_hk_cn" />
+        <item
+            android:id="@+id/gb_en"
+            android:title="@string/language_gb_en" />
+
+        <item
+            android:id="@+id/kr_ko"
+            android:title="@string/language_kr_ko" />
+    </group>
+
+</menu>

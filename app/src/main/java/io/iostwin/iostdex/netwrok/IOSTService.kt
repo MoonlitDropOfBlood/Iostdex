@@ -1,11 +1,8 @@
 package io.iostwin.iostdex.netwrok
 
-import io.iostwin.iostdex.domain.AccountResp
-import io.iostwin.iostdex.domain.TokenBalanceResp
+import io.iostwin.iostdex.domain.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface IOSTService {
 
@@ -16,4 +13,12 @@ interface IOSTService {
     @Headers("header_extend:iost")
     @GET("/getTokenBalance/{account}/{tokenSymbol}/1")
     fun getTokenBalance(@Path("account") account: String, @Path("tokenSymbol") tokenSymbol: String): Call<TokenBalanceResp>
+
+    @Headers("header_extend:iost")
+    @GET("/getChainInfo")
+    fun getChainInfo(): Call<ChainInfo>
+
+    @Headers("header_extend:iost")
+    @POST("/getBatchContractStorage")
+    fun getBatchContractStorage(@Body body: BatchContractStorageReq): Call<BatchContractStorageResp>
 }

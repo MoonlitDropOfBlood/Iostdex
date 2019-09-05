@@ -38,7 +38,7 @@ abstract class OrderListControl<T> {
     @Subscribe
     open fun onOrderFiltrate(message: OrderFiltrateMessage) {
         symbol = message.symbol
-        adapter.symbol.set(symbol)
+        adapter.symbol.set(message.symbolName)
         if (symbol == "") {
             data.clear()
             adapter.notifyDataSetChanged()

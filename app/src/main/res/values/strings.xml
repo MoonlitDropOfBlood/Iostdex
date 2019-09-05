@@ -98,4 +98,16 @@
     <string name="trade_text1">可用:</string>
     <string name="trade_text2">可用量不足</string>
     <string name="login">登录</string>
+    <string name="trade_error_1">请输入价格与数量</string>
+    <string name="trade_error_2">交易总额不能低于 1 IOST</string>
+    <string name="trade_error_3">操作失败</string>
+    <string name="trade_success">操作成功</string>
+    <string name="trade_text3">已经完成交易，无法操作</string>
+    <string name="trade_text4">确认是否撤单</string>
+
+    <string name="language_zh_cn" translatable="false">简体中文</string>
+    <string name="language_hk_cn" translatable="false">繁体中文</string>
+    <string name="language_gb_en" translatable="false">English</string>
+    <string name="language_kr_ko" translatable="false">한국어</string>
+    <string name="cn_warr" translatable="false">您好，IOSTDex 不向来自中国用户提供服务。\n我们无意诱使任何人违反任何地方或国家法律。玩家的唯一责任是参考其管辖范围内的法律，以确定行为的合法性。</string>
 </resources>

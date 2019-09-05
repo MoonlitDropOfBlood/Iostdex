@@ -5,7 +5,6 @@ package io.iostwin.iostdex.module.trade.ui.activites
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
@@ -23,6 +22,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.github.fujianlian.klinechart.draw.Status
 import com.google.android.material.tabs.TabLayout
 import io.iostwin.iostdex.BuildConfig
+import io.iostwin.iostdex.common.BaseActivity
 import io.iostwin.iostdex.databinding.*
 import io.iostwin.iostdex.domain.*
 import io.iostwin.iostdex.module.trade.control.*
@@ -32,7 +32,7 @@ import org.greenrobot.eventbus.Subscribe
 import java.math.BigDecimal
 
 @RouterUri(path = ["/tokenInfo"])
-class TokenInfoActivity : AppCompatActivity() {
+class TokenInfoActivity : BaseActivity() {
 
     private lateinit var control: TokenInfoControl
     private lateinit var resolution: PopupWindow

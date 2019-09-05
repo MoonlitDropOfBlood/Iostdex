@@ -13,8 +13,8 @@ interface ApiService {
     @POST("/api/trade/orders/")
     fun orders(
         @Field("page") page: Int, @Field("symbol") symbol: String, @Field("user") user: String,
-        @Field("direction") direction: Int?, @Field("status") status: Int?,
-        @Field("starttime") startTime: Int?, @Field("endtime") endTime: Int?
+        @Field("direction") direction: Int? = null, @Field("status") status: Int? = null,
+        @Field("starttime") startTime: Int? = null, @Field("endtime") endTime: Int? = null
     ): Call<PageResp<RecordOrderResp>>
 
     @FormUrlEncoded

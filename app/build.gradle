@@ -103,4 +103,8 @@ dependencies {
      * 刻度进度
      */
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    /**
+     * 提示
+     */
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

@@ -132,7 +132,7 @@
                             android:id="@+id/spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:dropDownWidth="30dp"
+                            android:dropDownWidth="120dp"
                             android:entries="@array/trade_array"
                             android:onItemSelected="@{(parent,view,position,id)->control.itemSelect(position)}" />
 
@@ -173,6 +173,7 @@
                                     android:clickable="true"
                                     android:contentDescription="@string/app_name"
                                     android:focusable="true"
+                                    android:onClick="@{()->control.operation(false)}"
                                     android:src="@drawable/ic_remove_black_48dp" />
 
                                 <View
@@ -188,6 +189,7 @@
                                     android:clickable="true"
                                     android:contentDescription="@string/app_name"
                                     android:focusable="true"
+                                    android:onClick="@{()->control.operation(true)}"
                                     android:src="@drawable/ic_add_black_48dp" />
                             </LinearLayout>
 
@@ -244,6 +246,7 @@
                             app:isb_seek_smoothly="true"
                             app:isb_show_indicator="none"
                             app:isb_show_tick_marks_type="oval"
+                            app:isb_thumb_adjust_auto="false"
                             app:isb_thumb_drawable="@drawable/ic_seek_bar_thumb"
                             app:isb_thumb_size="20dp"
                             app:isb_tick_marks_color="@color/color_seek_bar"
@@ -286,11 +289,11 @@
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/white"
                             android:layout_marginTop="24dp"
                             android:background="@{control.isBuy?@drawable/bg_home_percent_up:@drawable/bg_home_percent_down}"
                             android:onClick="@{control::trade}"
-                            android:text="@{!control.isLogin ? @string/login : control.isBuy ? @string/order_buy + control.tradeSymbolName : @string/order_sell + control.tradeSymbolName}" />
+                            android:text="@{!control.isLogin ? @string/login : control.isBuy ? @string/order_buy + control.tradeSymbolName : @string/order_sell + control.tradeSymbolName}"
+                            android:textColor="@android:color/white" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -298,6 +301,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
                         android:layout_weight="2"
+                        android:descendantFocusability="afterDescendants"
                         android:orientation="vertical">
 
                         <!--suppress AndroidUnknownAttribute -->
@@ -309,7 +313,7 @@
                             android:adapter="@{control.sellAdapter}"
                             android:divider="@android:color/transparent"
                             android:dividerHeight="0dp"
-                            android:nestedScrollingEnabled="true"
+                            android:nestedScrollingEnabled="false"
                             android:onItemClickListener="@{(parent,view,position,id)->control.itemClick(parent,position)}"
                             android:stackFromBottom="true"
                             tools:ignore="NestedWeights" />
@@ -317,6 +321,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginTop="4dp"
                             android:background="@color/line_color" />
 
                         <!--suppress AndroidUnknownAttribute -->
@@ -333,6 +338,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginBottom="4dp"
                             android:background="@color/line_color" />
 
                         <!--suppress AndroidUnknownAttribute -->
@@ -352,10 +358,14 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    app:layout_scrollFlags="scroll" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:background="@android:color/white"
                     android:padding="16dp"
                     android:text="@string/tab_my_commission"
@@ -367,9 +377,14 @@
                     android:background="@color/line_color" />
             </com.google.android.material.appbar.AppBarLayout>
 
+            <!--suppress AndroidUnknownAttribute -->
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adapter="@{control.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

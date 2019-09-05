@@ -1,5 +1,6 @@
 package io.iostwin.iostdex.module.main.control
 
+import android.content.Context
 import android.net.Uri
 import android.os.AsyncTask
 import androidx.databinding.ObservableField
@@ -48,10 +49,10 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
         binding.refreshLayout.autoRefresh()
     }
 
-    private fun onItemClick(tokenAssets: TokenAssets) {
+    private fun onItemClick(context:Context,tokenAssets: TokenAssets) {
         Router.startUri(
             UriRequest(
-                binding.root.context,
+                context,
                 Uri.Builder().path("/tokenInfo").appendQueryParameter(
                     "icon", tokenAssets.icon
                 ).appendQueryParameter("symbol", tokenAssets.symbol).appendQueryParameter(

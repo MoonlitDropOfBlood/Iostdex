@@ -13,6 +13,7 @@ data class OrderHttpMessage(val isTop: Boolean)
 data class OrderFinishMessage(val isTop: Boolean, val success: Boolean, val isEnd: Boolean)
 
 data class OrderFiltrateMessage(
+    val symbolName: String,
     val symbol: String,
     val direction: Int? = null,
     val status: Int? = null,
@@ -24,7 +25,12 @@ data class OrderMessage(val buy: Boolean, val data: ArrayList<Order>)
 
 data class HistoryMessage(val data: ArrayList<History>)
 
-data class TradeMessage(val buy: OrderMessage, val sell: OrderMessage, val price: BigDecimal,val percent:BigDecimal)
+data class TradeMessage(
+    val buy: OrderMessage,
+    val sell: OrderMessage,
+    val price: BigDecimal,
+    val percent: BigDecimal
+)
 
 data class PriceMessage(
     val amount24H: BigDecimal,

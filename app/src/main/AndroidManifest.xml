@@ -17,7 +17,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.trade.ui.activites.TradeActivity"></activity>
+        <activity android:name=".module.main.ui.activites.LoginActivity"></activity>
+        <activity android:name=".module.trade.ui.activites.TradeActivity" />
 
         <service android:name=".module.trade.service.WebSocketService" />
 
