@@ -20,6 +20,9 @@ import io.iostwin.iostdex.utils.Constants
 import io.iostwin.iostdex.utils.SPUtils
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import com.google.firebase.analytics.FirebaseAnalytics
+
+
 
 @RouterUri(path = ["/"])
 class MainActivity : BaseActivity() {
@@ -27,8 +30,10 @@ class MainActivity : BaseActivity() {
     private val tabFragment = arrayListOf(HomeFragment(), OrderFragment(), AssetsFragment())
     private var mCurrentFragment: BaseFragment = tabFragment[0]
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mFirebaseAnalytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         EventBus.getDefault().register(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportFragmentManager.beginTransaction()

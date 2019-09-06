@@ -23,7 +23,7 @@ class LoginActivity : BaseActivity() {
     }
 
     @Subscribe
-    fun onLogout(message: LoginMessage) {
+    fun onLogout(@Suppress("UNUSED_PARAMETER") message: LoginMessage) {
         finish()
     }
 
