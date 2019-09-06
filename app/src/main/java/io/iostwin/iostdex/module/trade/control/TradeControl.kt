@@ -42,6 +42,7 @@ class TradeControl(
     val mainSymbol = "IOST"
     val isBuy = ObservableBoolean(buy == 1)
     val price = ObservableField<String>()
+    private var priceStr = ""
     val num = ObservableField<String>()
     val isLimit = ObservableBoolean(true)
     val tradePrice = ObservableField<BigDecimal>()
@@ -113,8 +114,17 @@ class TradeControl(
         val cal = object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 val num = num.get()
+                val price = price.get()
+                if (!TextUtils.isEmpty(price)) {
+                    if (sellOrder.isNotEmpty() && buyOrder.isNotEmpty()) {
+                        if (BigDecimal(price) != sellOrder[sellOrder.size - 1].price && BigDecimal(
+                                price
+                            ) != buyOrder[0].price
+                        )
+                            priceStr = price!!
+                    }
+                }
                 if (isBuy.get()) {
-                    val price = price.get()
                     if (TextUtils.isEmpty(price) || TextUtils.isEmpty(num))
                         return
                     val total = BigDecimal(price).multiply(BigDecimal(num))
@@ -134,15 +144,24 @@ class TradeControl(
         }
         price.addOnPropertyChangedCallback(cal)
         num.addOnPropertyChangedCallback(cal)
+        isBuy.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                if (!isLimit.get())
+                    changePrice()
+            }
+        })
+        isLimit.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                if (!isLimit.get())
+                    changePrice()
+                else
+                    price.set(priceStr)
+            }
+
+        })
     }
 
-    @Subscribe(sticky = true)
-    fun onOrderInitMessage(message: TradeMessage) {
-        EventBus.getDefault().removeStickyEvent(message)
-        tradePrice.set(message.price)
-        percent.set(message.percent)
-        onOrderMessage(message.buy)
-        onOrderMessage(message.sell)
+    fun changePrice() {
         if (isBuy.get()) {
             if (sellOrder.isNotEmpty()) {
                 price.set(sellOrder[sellOrder.size - 1].price.toPlainString())
@@ -152,6 +171,17 @@ class TradeControl(
                 price.set(buyOrder[0].price.toPlainString())
             }
         }
+    }
+
+    @Subscribe(sticky = true)
+    fun onOrderInitMessage(message: TradeMessage) {
+        EventBus.getDefault().removeStickyEvent(message)
+        tradePrice.set(message.price)
+        percent.set(message.percent)
+        onOrderMessage(message.buy)
+        onOrderMessage(message.sell)
+        changePrice()
+        priceStr = price.get() ?: ""
     }
 
     @Subscribe

@@ -17,7 +17,6 @@ import io.iostwin.iostdex.module.main.ui.fragments.AssetsFragment
 import io.iostwin.iostdex.module.main.ui.fragments.LoginFragment
 import io.iostwin.iostdex.module.main.ui.fragments.OrderFragment
 import io.iostwin.iostdex.utils.Constants
-import io.iostwin.iostdex.utils.MultiLanguageUtils
 import io.iostwin.iostdex.utils.SPUtils
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
