@@ -418,15 +418,20 @@ public class DepthMapView extends View {
         }
         int size = mBottomPrice.length;
         int height = mDrawHeight + mBottomPriceHeight / 2 + 10;
-        if (size > 0 && mBottomPrice[0] != null) {
-            String data = getSelectPriceValue(mBottomPrice[0]);
-            canvas.drawText(data, mTextPaint.measureText(data), height, mTextPaint);
-            data = getSelectPriceValue(mBottomPrice[1]);
-            canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
-            data = getSelectPriceValue(mBottomPrice[2]);
-            canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
-            data = getSelectPriceValue(mBottomPrice[3]);
-            canvas.drawText(data, mWidth, height, mTextPaint);
+        if (size > 0) {
+            String data;
+            if (mBottomPrice[0] != null) {
+                data = getSelectPriceValue(mBottomPrice[0]);
+                canvas.drawText(data, mTextPaint.measureText(data), height, mTextPaint);
+                data = getSelectPriceValue(mBottomPrice[1]);
+                canvas.drawText(data, mDrawWidth - 10, height, mTextPaint);
+            }
+            if (mBottomPrice[2] != null) {
+                data = getSelectPriceValue(mBottomPrice[2]);
+                canvas.drawText(data, mDrawWidth + mTextPaint.measureText(data) + 10, height, mTextPaint);
+                data = getSelectPriceValue(mBottomPrice[3]);
+                canvas.drawText(data, mWidth, height, mTextPaint);
+            }
         }
         if (mIsLongPress) {
             boolean mIsHave = false;

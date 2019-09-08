@@ -124,21 +124,22 @@ class TradeControl(
                             priceStr = price!!
                     }
                 }
-                if (isBuy.get()) {
-                    if (TextUtils.isEmpty(price) || TextUtils.isEmpty(num))
-                        return
-                    val total = BigDecimal(price).multiply(BigDecimal(num))
-                        .setScale(8, BigDecimal.ROUND_HALF_DOWN)
-                    if (total > mainBalance.get()) {
-                        Toasty.warning(context, R.string.trade_text2, Toast.LENGTH_SHORT, true)
-                            .show()
+                if (User.isLogin())
+                    if (isBuy.get()) {
+                        if (TextUtils.isEmpty(price) || TextUtils.isEmpty(num))
+                            return
+                        val total = BigDecimal(price).multiply(BigDecimal(num))
+                            .setScale(8, BigDecimal.ROUND_HALF_DOWN)
+                        if (total > mainBalance.get()) {
+                            Toasty.warning(context, R.string.trade_text2, Toast.LENGTH_SHORT, true)
+                                .show()
+                        }
+                    } else if (!TextUtils.isEmpty(num)) {
+                        if (BigDecimal(num) > tradeBalance.get()) {
+                            Toasty.warning(context, R.string.trade_text2, Toast.LENGTH_SHORT, true)
+                                .show()
+                        }
                     }
-                } else if (!TextUtils.isEmpty(num)) {
-                    if (BigDecimal(num) > tradeBalance.get()) {
-                        Toasty.warning(context, R.string.trade_text2, Toast.LENGTH_SHORT, true)
-                            .show()
-                    }
-                }
             }
 
         }
