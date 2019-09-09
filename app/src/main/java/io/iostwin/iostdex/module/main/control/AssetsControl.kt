@@ -49,7 +49,7 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
         binding.refreshLayout.autoRefresh()
     }
 
-    private fun onItemClick(context:Context,tokenAssets: TokenAssets) {
+    private fun onItemClick(context: Context, tokenAssets: TokenAssets) {
         Router.startUri(
             UriRequest(
                 context,
@@ -64,30 +64,34 @@ class AssetsControl(private val binding: FragmentAssetsBinding) {
     }
 
     private fun sendHttp() {
-        NetConfig.getService(ApiService::class.java).chartAll()
-            .enqueue(HttpCallBack(this::success, fail))
-        NetConfig.getService(IOSTService::class.java).getAccount(User.account!!)
-            .enqueue(HttpCallBack({
-                var total = it.balance
-                for (frozen in it.frozen_balances) {
-                    total = total.add(frozen.amount)
-                }
-                totalAmount.set(total)
-                gas.set(
-                    it.gas_info.current_total.minus(it.gas_info.limit).setScale(
-                        2,
-                        BigDecimal.ROUND_HALF_UP
-                    ).div(it.gas_info.limit).multiply(
-                        BigDecimal(100)
+        if (User.isLogin()) {
+            NetConfig.getService(ApiService::class.java).chartAll()
+                .enqueue(HttpCallBack(this::success, fail))
+            NetConfig.getService(IOSTService::class.java).getAccount(User.account!!)
+                .enqueue(HttpCallBack({
+                    var total = it.balance
+                    for (frozen in it.frozen_balances) {
+                        total = total.add(frozen.amount)
+                    }
+                    totalAmount.set(total)
+                    gas.set(
+                        it.gas_info.current_total.minus(it.gas_info.limit).setScale(
+                            2,
+                            BigDecimal.ROUND_HALF_UP
+                        ).div(it.gas_info.limit).multiply(
+                            BigDecimal(100)
+                        )
                     )
-                )
-                ram.set(
-                    it.ram_info.used.setScale(
-                        2,
-                        BigDecimal.ROUND_HALF_UP
-                    ).div(it.ram_info.total).multiply(BigDecimal(100))
-                )
-            }))
+                    ram.set(
+                        it.ram_info.used.setScale(
+                            2,
+                            BigDecimal.ROUND_HALF_UP
+                        ).div(it.ram_info.total).multiply(BigDecimal(100))
+                    )
+                }))
+        } else {
+            binding.refreshLayout.finishRefresh()
+        }
     }
 
     private fun success(response: ArrayList<TokenSymbolResp>) {
